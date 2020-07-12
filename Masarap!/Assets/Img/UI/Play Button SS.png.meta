@@ -1,0 +1,269 @@
+fileFormatVersion: 2
+guid: 1e27a34faf113c74fbc96edc632a17c7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4200191883939929665
+    second: Play Button
+  - first:
+      213: 8434576751695104020
+    second: Play Button ENG
+  - first:
+      213: -1618335128380385731
+    second: Play Button CEB
+  - first:
+      213: 2387503110381571243
+    second: Play Button SS_3
+  - first:
+      213: 4937720238460288517
+    second: Play Button SS_4
+  - first:
+      213: -2895197495194134066
+    second: Play Button SS_5
+  - first:
+      213: 2750561488358193334
+    second: Play Button SS_6
+  - first:
+      213: 6622997006950956979
+    second: Play Button SS_7
+  - first:
+      213: -3600751916850807723
+    second: Play Button SS_8
+  - first:
+      213: -7958931285879980236
+    second: Play Button SS_9
+  - first:
+      213: 7729662598967881967
+    second: Play Button SS_10
+  - first:
+      213: 8284922825463612883
+    second: Play Button SS_11
+  - first:
+      213: -2609692733426596894
+    second: Play Button
+  - first:
+      213: -188958897267120840
+    second: Play Button ENG
+  - first:
+      213: -851675734049899459
+    second: Play Button SS_5
+  - first:
+      213: -8299455420570004253
+    second: Play Button SS_12
+  - first:
+      213: 7130553107250593419
+    second: Play Button SS_13
+  - first:
+      213: 6109257109341804253
+    second: Play Button SS_14
+  - first:
+      213: 5903280430564238453
+    second: Play Button SS_15
+  - first:
+      213: -2609692733426596894
+    second: Play Button TAG
+  - first:
+      213: 8986531086582997556
+    second: Play Button SS_8
+  - first:
+      213: 1685925851483031834
+    second: Play Button SS_12
+  - first:
+      213: 6841508319324604242
+    second: Play Button SS_13
+  - first:
+      213: 5760873475570821478
+    second: Play Button SS_14
+  - first:
+      213: -3264327475725232804
+    second: Play Button SS_15
+  - first:
+      213: 4200191883939929665
+    second: Play Button TAG
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Play Button ENG
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 104
+        width: 404
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8356e3352eea06df0800000000000000
+      internalID: -188958897267120840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Play Button TAG
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 208
+        width: 404
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14ed7bec3441a4a30800000000000000
+      internalID: 4200191883939929665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Play Button CEB
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 404
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d36d95966c48a89e0800000000000000
+      internalID: -1618335128380385731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,350 @@
+fileFormatVersion: 2
+guid: 4fa7f2c490d2e554d97b68bc1c718f32
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1911606896405746964
+    second: Notebook Back
+  - first:
+      213: -6335102202366668447
+    second: Notebook Page 0
+  - first:
+      213: 4081166993784949271
+    second: Notebook Page 1
+  - first:
+      213: 9025549768416623756
+    second: Notebook 1
+  - first:
+      213: -889539222013263375
+    second: Notebook 2
+  - first:
+      213: -2003445226581241891
+    second: Notebook 3
+  - first:
+      213: 4543669751726770148
+    second: Notebook 3
+  - first:
+      213: 6096890975535053012
+    second: Notebook Page 0
+  - first:
+      213: 5169210263987926650
+    second: Notebook Page 1
+  - first:
+      213: 5808987790581886374
+    second: Notebook 1
+  - first:
+      213: -7935946851460272493
+    second: Notebook 2
+  - first:
+      213: -968916309749992672
+    second: Notebook 3
+  - first:
+      213: 4470614365336372855
+    second: Notebook Cover
+  - first:
+      213: 6096890975535053012
+    second: Notebook Page X
+  - first:
+      213: 5169210263987926650
+    second: Notebook Page 1
+  - first:
+      213: 5808987790581886374
+    second: Notebook Page 2
+  - first:
+      213: -7935946851460272493
+    second: Notebook 1
+  - first:
+      213: -968916309749992672
+    second: Notebook 2
+  - first:
+      213: 1911606896405746964
+    second: Notebook SS_0
+  - first:
+      213: -6335102202366668447
+    second: Notebook SS_1
+  - first:
+      213: 5169210263987926650
+    second: Notebook SS_2
+  - first:
+      213: -1925299216870122093
+    second: Notebook SS_3
+  - first:
+      213: -7935946851460272493
+    second: Notebook SS_4
+  - first:
+      213: -968916309749992672
+    second: Notebook SS_5
+  - first:
+      213: 4543669751726770148
+    second: Notebook SS_6
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Notebook SS_2
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 1100
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a76bd42f859bcb740800000000000000
+      internalID: 5169210263987926650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notebook SS_4
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 1016
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39ea452926addd190800000000000000
+      internalID: -7935946851460272493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notebook SS_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 460
+        height: 582
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 023f444ffb7bd82f0800000000000000
+      internalID: -968916309749992672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notebook SS_6
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 1
+        width: 460
+        height: 582
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e78c58d09b5e0f30800000000000000
+      internalID: 4543669751726770148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notebook SS_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1160
+        width: 960
+        height: 600
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 415937a1854678a10800000000000000
+      internalID: 1911606896405746964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notebook SS_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 584
+        width: 465
+        height: 575
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 161d32c9c123518a0800000000000000
+      internalID: -6335102202366668447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notebook SS_3
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 1058
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39d5e1c1096f745e0800000000000000
+      internalID: -1925299216870122093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

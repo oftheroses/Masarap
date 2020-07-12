@@ -1,18 +1,21 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class SplashScreen : MonoBehaviour {
 
     #region BASE
-    public SpriteRenderer cursorImg;
+    public AudioManager AM;
 
-    public GameObject paws;
+    public Button playButton;
+
+    public GameObject walls;
 
     private Vector3 mousePos;
     public Rigidbody2D rb;
     private Vector2 direction;
 
-    private static int mouseSpeed;
+    public Player playerScript;
 
     public AudioSource collectSound;
     public AudioSource crash;
@@ -48,31 +51,24 @@ public class SplashScreen : MonoBehaviour {
         InvokeRepeating("FoodSpawn", 0, 7); // starting in 0 seconds, repeat it every 7 seconds
     }
 
-    // Mouse follow
+    
     void Update() {
 
+        // Mouse follow
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         direction = (mousePos - transform.position).normalized;
-        rb.velocity = new Vector2(direction.x * /*Player.mouseSpeed*/ 100, direction.y * /*Player.mouseSpeed*/ 100);
+        rb.velocity = new Vector2(direction.x * playerScript.mouseSpeed, direction.y * playerScript.mouseSpeed);
 
-        /*if (Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.Space)) {
-
-            if (paws.activeInHierarchy == false) { // if pause screen isn't *already active*, bring it up
-
-                cursorImg.enabled = !cursorImg.enabled; // hide cursor image
-                paws.SetActive(true);
-
-                if (Time.timeScale == 1.0f)
-                { // freeze time
-                    Time.timeScale = 0.0f;
-                }
-            }
-        }*/
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Return)) {
+            playButton.Select();
+        }
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Return)) {
+            playButton.onClick.Invoke();
+        }
     }
 
     // Collision sounds
     void OnCollisionEnter2D(Collision2D col) {
-
         if (col.gameObject.tag == "food") {
             Destroy(col.gameObject);
             collectSound.Play(0);
@@ -84,17 +80,12 @@ public class SplashScreen : MonoBehaviour {
     }
 
 
-    /*public void UnFreeze() {
-        if (Time.timeScale == 0.0f) {
-            Time.timeScale = 1.0f;
-        }
-    }*/
-
     // Regular "void" doesn't allow delays,
     void FoodSpawn() {
         StartCoroutine(Spawning());
     }
 
+    // but IEnumerator does.
     IEnumerator Spawning() {
         // Sugar - spawns from the top
         AsukalScale = Random.Range(0.5f, 1f);
@@ -147,4 +138,12 @@ public class SplashScreen : MonoBehaviour {
 
         yield return new WaitForSeconds(1); // 6 seconds total
     }
+
+    public void DeleteFood() {
+        GameObject[] gameObjectArray = GameObject.FindGameObjectsWithTag("food");
+        foreach (GameObject yum in gameObjectArray) {
+            yum.SetActive(false);
+        }
+    }
+
 }
