@@ -6,9 +6,9 @@ using System.Collections.Generic;
 public class Settings : MonoBehaviour {
 
     public Player player;
-    public SpreadManager sm;
 
     public Toggle enableTooltip;
+    public float tooltipTransparency;
 
     public TextMeshProUGUI musicText;
     public Slider musicSlider;
@@ -58,36 +58,6 @@ public class Settings : MonoBehaviour {
             }
         }
     }
-
-    #region levels
-    public void SpreadOne() {
-        sm.currentSpread = 1;
-    }
-
-    public void SpreadTwo() {
-        sm.currentSpread = 2;
-    }
-
-    public void SpreadThree() {
-        sm.currentSpread = 3;
-    }
-
-    public void SpreadFour() {
-        sm.currentSpread = 4;
-    }
-
-    public void SpreadFive() {
-        sm.currentSpread = 5;
-    }
-
-    public void SpreadSix() {
-        sm.currentSpread = 6;
-    }
-
-    public void SpreadSeven() {
-        sm.currentSpread = 7;
-    }
-    #endregion
 
     public void Tooltips() {
         if (enableTooltip.isOn) {

@@ -16,6 +16,7 @@ public class SpreadManager : MonoBehaviour {
 
     public AudioManager pageTurn;
     public int currentSpread;
+
     public GameObject spreadZero;
     public GameObject spreadOne;
     public GameObject spreadTwo;
@@ -23,6 +24,12 @@ public class SpreadManager : MonoBehaviour {
     public GameObject spreadFour;
     public GameObject spreadFive;
     public GameObject spreadSix;
+    public GameObject spreadSeven;
+    public GameObject spreadEight;
+    public GameObject spreadNine;
+    public GameObject spreadTen;
+    public GameObject spreadEleven;
+    public GameObject spreadTwelve;
     #endregion
 
 
@@ -60,6 +67,34 @@ public class SpreadManager : MonoBehaviour {
         else if (currentSpread == 5) {
             spreadFive.SetActive(true);
         }
+
+        else if (currentSpread == 6) {
+            spreadSix.SetActive(true);
+        }
+
+        else if (currentSpread == 7) {
+            spreadSeven.SetActive(true);
+        }
+
+        else if (currentSpread == 8) {
+            spreadEight.SetActive(true);
+        }
+
+        else if (currentSpread == 9) {
+            spreadNine.SetActive(true);
+        }
+
+        else if (currentSpread == 10) {
+            spreadTen.SetActive(true);
+        }
+
+        else if (currentSpread == 11) {
+            spreadEleven.SetActive(true);
+        }
+
+        else if (currentSpread == 12) {
+            spreadTwelve.SetActive(true);
+        }
     }
 
 
@@ -84,12 +119,12 @@ public class SpreadManager : MonoBehaviour {
     }
 
     public void spreadIncrease() {
-        // ONLY if it's less than 5 - never lets int go past 5
-        if (currentSpread < 6) {
+        // ONLY if it's less than 12 - never lets int go past 12
+        if (currentSpread < 12) {
             currentSpread++;
             pageTurn.Play("Page Turn");
         }
-        else if (currentSpread == 6) {
+        else if (currentSpread == 12) {
             pageTurn.Play("Hit 2");
         }
     }
