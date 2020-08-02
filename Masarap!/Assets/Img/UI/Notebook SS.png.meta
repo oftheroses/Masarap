@@ -58,25 +58,28 @@ TextureImporter:
     second: Notebook 2
   - first:
       213: 1911606896405746964
-    second: Notebook SS_0
+    second: Notebook Back
   - first:
       213: -6335102202366668447
-    second: Notebook SS_1
+    second: Notebook Glued
   - first:
       213: 5169210263987926650
-    second: Notebook SS_2
+    second: Notebook 1
   - first:
       213: -1925299216870122093
-    second: Notebook SS_3
+    second: Notebook 2
   - first:
       213: -7935946851460272493
-    second: Notebook SS_4
+    second: Notebook 3
   - first:
       213: -968916309749992672
-    second: Notebook SS_5
+    second: Notebook Left
   - first:
       213: 4543669751726770148
-    second: Notebook SS_6
+    second: Notebook Right
+  - first:
+      213: 4081166993784949271
+    second: Notebook 1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -186,7 +189,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Notebook SS_2
+      name: Notebook 1
       rect:
         serializedVersion: 2
         x: 497
@@ -194,7 +197,7 @@ TextureImporter:
         width: 40
         height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -207,7 +210,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Notebook SS_4
+      name: Notebook 3
       rect:
         serializedVersion: 2
         x: 497
@@ -215,7 +218,7 @@ TextureImporter:
         width: 40
         height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -228,7 +231,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Notebook SS_5
+      name: Notebook Left
       rect:
         serializedVersion: 2
         x: 0
@@ -236,7 +239,7 @@ TextureImporter:
         width: 460
         height: 582
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -249,7 +252,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Notebook SS_6
+      name: Notebook Right
       rect:
         serializedVersion: 2
         x: 461
@@ -257,7 +260,7 @@ TextureImporter:
         width: 460
         height: 582
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -270,7 +273,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Notebook SS_0
+      name: Notebook Back
       rect:
         serializedVersion: 2
         x: 0
@@ -278,7 +281,7 @@ TextureImporter:
         width: 960
         height: 600
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -291,7 +294,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Notebook SS_1
+      name: Notebook Glued
       rect:
         serializedVersion: 2
         x: 0
@@ -299,7 +302,7 @@ TextureImporter:
         width: 465
         height: 575
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -312,7 +315,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Notebook SS_3
+      name: Notebook 2
       rect:
         serializedVersion: 2
         x: 497
@@ -320,7 +323,7 @@ TextureImporter:
         width: 40
         height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
