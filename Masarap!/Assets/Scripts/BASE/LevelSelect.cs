@@ -7,12 +7,6 @@ public class LevelSelect : MonoBehaviour {
     /* for the level select screen:
     * each recipe/level is a button
     * that takes you to its spread
-    * 
-    * +
-    * 
-    * activates/changes appearance
-    * of levels to indicate the player
-    * has completed them successfully
     */
 
     public SpreadManager sm;

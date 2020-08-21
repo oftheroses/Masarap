@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
 
@@ -53,40 +52,4 @@ public class Player : MonoBehaviour {
         langTwo = data.langTwo;
         langThree = data.langThree;
     }
-
-    #region LEVELSELECT
-    public void Splash() {
-        SceneManager.LoadScene(0);
-    }
-    public void Champorado() {
-        SceneManager.LoadScene(1);
-    }
-    public void Tosilog() {
-        SceneManager.LoadScene(2);
-    }
-
-    public void Pandesal() {
-        SceneManager.LoadScene(7);
-    }
-
-    public void GinisangAmpalaya()  {
-
-    }
-
-    public void TokwatBaboy() {
-
-    }
-
-    public void TortangTalong() {
-
-    }
-
-    public void Sopas() {
-
-    }
-
-    public void GinisangSardinas() {
-
-    }
-    #endregion
 }

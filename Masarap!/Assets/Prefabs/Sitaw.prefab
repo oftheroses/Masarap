@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8953820492383892951}
   - component: {fileID: 8953820492383892950}
   - component: {fileID: 8953820492383892948}
-  - component: {fileID: 8953820492383892949}
   - component: {fileID: -140095908807992164}
+  - component: {fileID: 1813942424377636489}
   m_Layer: 9
   m_Name: Sitaw
   m_TagString: food
@@ -73,13 +73,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 9108069585339366203, guid: b2721fde624d79242a066526d6abfd77,
-    type: 3}
+  m_Sprite: {fileID: 446104417442755794, guid: 431e78cb79bc29442b6ded0be8fd5439, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.97, y: 2.94}
+  m_Size: {x: 3.14, y: 1.72}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -96,48 +95,16 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 1
+  m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 2
-  m_AngularDrag: 2
-  m_GravityScale: 1
+  m_AngularDrag: 0
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!68 &8953820492383892949
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8953820492383892971}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.26022726, y: -1.4547977}
-  - {x: -0.74799013, y: -1.2252545}
-  - {x: -0.9414343, y: -0.6763215}
-  - {x: -0.9776589, y: -0.12259436}
-  - {x: -0.87077075, y: 0.42869854}
-  - {x: -0.6577408, y: 0.9848194}
-  - {x: -0.06506774, y: 1.3957376}
-  - {x: 0.5677717, y: 1.3948784}
-  - {x: 0.9639358, y: 0.8710146}
-  - {x: 0.45205617, y: 1.278348}
-  - {x: 0.06717995, y: 1.1736836}
-  - {x: -0.2824694, y: 0.8648901}
-  - {x: -0.50338984, y: 0.47764492}
-  - {x: -0.7248819, y: -0.4479661}
-  - {x: -0.65578264, y: -1.1358147}
-  - {x: -0.29123026, y: -1.402278}
 --- !u!82 &-140095908807992164
 AudioSource:
   m_ObjectHideFlags: 0
@@ -147,10 +114,11 @@ AudioSource:
   m_GameObject: {fileID: 8953820492383892971}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ba2b1faaebd665a4d9a133b109a1f4a4, type: 3}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: fdcb460d89168aa4f8539bc74a2f8af9,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 3b3341d46a2f254429e0d573c18f1802, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.25
+  m_Volume: 0.1
   m_Pitch: 0.75
   Loop: 0
   Mute: 0
@@ -234,3 +202,37 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!68 &1813942424377636489
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8953820492383892971}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 1.465932, y: 0.7767778}
+  - {x: 1.446741, y: 0.4323132}
+  - {x: 1.4941056, y: 0.21540342}
+  - {x: 1.15123, y: -0.18453005}
+  - {x: 0.3029368, y: -0.72245276}
+  - {x: -0.5850636, y: -0.825415}
+  - {x: -1.1443634, y: -0.5785347}
+  - {x: -1.4331925, y: -0.19897047}
+  - {x: -1.5169221, y: 0.10927278}
+  - {x: -1.4339592, y: 0.39471146}
+  - {x: -1.1789035, y: 0.7551459}
+  - {x: -1.2914081, y: 0.33508468}
+  - {x: -1.082772, y: -0.10675332}
+  - {x: -0.45724082, y: -0.34326443}
+  - {x: 0.5328207, y: -0.15007105}
+  - {x: 1.2942181, y: 0.32493898}
+  - {x: 1.3589712, y: 0.7325144}
+  - {x: 1.4223065, y: 0.7787476}

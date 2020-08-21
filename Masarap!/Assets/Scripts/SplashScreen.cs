@@ -4,21 +4,34 @@ using System.Collections;
 
 public class SplashScreen : MonoBehaviour {
 
+    /* HEADSUP!!
+     * this script is laced w sins
+     * so if you're smarter than me
+     * please don't rub my if statements
+     * in my face :v(
+     */
+
     #region BASE
     public AudioManager AM;
 
     public Button playButton;
 
     public GameObject walls;
+    public bool touchingWall;
 
     private Vector3 mousePos;
     public Rigidbody2D rb;
     private Vector2 direction;
+    private int speed;
 
     public Player playerScript;
 
     public AudioSource collectSound;
     public AudioSource crash;
+
+    public int spawnInt;
+
+    public AudioSource bgm;
     #endregion
 
     #region FOOD
@@ -29,45 +42,67 @@ public class SplashScreen : MonoBehaviour {
     public GameObject Kamatis;
     private GameObject SpawnedKamatis;
     private float KamatisScale;
-    private GameObject SpawnedKamatis2;
-    private float KamatisScale2;
-
-    public GameObject Niyog;
-    private GameObject SpawnedNiyog;
-    private float NiyogScale;
-
-    public GameObject Pichay;
-    private GameObject SpawnedPichay;
-    private float PichayScale;
 
     public GameObject Sitaw;
-    private GameObject SpawnedSitaw;
+    private GameObject SpawnedSitawLEFT;
+    private GameObject SpawnedSitawRIGHT;
     private float SitawScale;
-    #endregion
 
+    public GameObject Paminta;
+    private GameObject SpawnedPaminta;
+    private float PamintaScale;
+
+    public GameObject Karot;
+    private GameObject SpawnedKarot;
+    private float KarotScale;
+
+    public GameObject Pina;
+    private GameObject SpawnedPinaLEFT;
+    private GameObject SpawnedPinaRIGHT;
+    private float PinaScale;
+    #endregion
 
     // InvokeRepeating "void FoodSpawn",
     void Start() {
-        InvokeRepeating("FoodSpawn", 0, 7); // starting in 0 seconds, repeat it every 7 seconds
-    }
+        speed = playerScript.mouseSpeed;
+        Cursor.visible = false;
+        InvokeRepeating("FoodSpawn", 0, 0.65f); // starting in 0 seconds, repeat it every 7 seconds
 
+    }
     
     void Update() {
 
-        // Mouse follow
+        #region mouse follow/play
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         direction = (mousePos - transform.position).normalized;
-        rb.velocity = new Vector2(direction.x * playerScript.mouseSpeed, direction.y * playerScript.mouseSpeed);
+        rb.velocity = new Vector2(direction.x * speed, direction.y * speed);
 
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Return)) {
-            playButton.Select();
+        #endregion
+
+        // if anything pushes the pan out of place
+        if (transform.rotation.z != 0) {
+
+            // if it's between -15 and +15, move back
+            if (transform.rotation.z > -15 && transform.rotation.z < 15) {
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, (Quaternion.Euler(0, 0, 0)), Time.deltaTime * 35);
+            }
+            
+            // if the pan falls past -15 or over +15 WHILE touching wall, freeze rotation
+            if (transform.eulerAngles.z < -15 || transform.eulerAngles.z > 15) {
+                if (touchingWall == true) {
+                    rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+                }
+            }
         }
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Return)) {
-            playButton.onClick.Invoke();
+
+        // unfreeze rotation when we exit collision with wall
+        if (rb.freezeRotation == true && touchingWall == false) {
+            rb.freezeRotation = false;
         }
+        
     }
 
-    // Collision sounds
+    // if wok is touching the wall & is rotated greater than 20, freeze it
     void OnCollisionEnter2D(Collision2D col) {
         if (col.gameObject.tag == "food") {
             Destroy(col.gameObject);
@@ -75,68 +110,142 @@ public class SplashScreen : MonoBehaviour {
         }
 
         if (col.gameObject.tag == "wall") {
+            touchingWall = true;
             crash.Play(0);
         }
     }
 
-
-    // Regular "void" doesn't allow delays,
-    void FoodSpawn() {
-        StartCoroutine(Spawning());
+    // detect if we stop touching wall
+    void OnCollisionExit2D(Collision2D collision) {
+        if (collision.gameObject.tag == "wall") {
+            touchingWall = false;
+        }
     }
 
-    // but IEnumerator does.
-    IEnumerator Spawning() {
-        // Sugar - spawns from the top
-        AsukalScale = Random.Range(0.5f, 1f);
-        SpawnedAsukal = Instantiate(Asukal, new Vector3(Random.Range(-7.15f, 7.15f), (Random.Range(8.7f, 6.31f)), 0), Quaternion.Euler(0, 0, Random.Range(0, 180)));
-        SpawnedAsukal.transform.localScale = new Vector3(AsukalScale, AsukalScale, 1);
+    void FoodSpawn() {
+        spawnInt = Random.Range(0, 9);
 
-        yield return new WaitForSeconds(1); // 1 second
+        // Sugar - TOP
+        if (spawnInt == 0) {
+            AsukalScale = Random.Range(0.55f, 1);
+            SpawnedAsukal = Instantiate(Asukal, new Vector3(Random.Range(-7.15f, 7.15f), 5.936f, 0), Quaternion.Euler(0, 0, Random.Range(0, 180)));
+            SpawnedAsukal.transform.localScale = new Vector3(AsukalScale, AsukalScale, 1);
+            Rigidbody2D AsukalRB = SpawnedAsukal.GetComponent<Rigidbody2D>();
 
-        // Tomatoes - spawn from the sides, thrown inward
-        KamatisScale = Random.Range(1.0f, 1.75f);
-        SpawnedKamatis = Instantiate(Kamatis, new Vector3(Random.Range(-10.62f, -9f), (Random.Range(-4.4f, 0f)), 0), Quaternion.Euler(0, 0, Random.Range(0, 180)));
-        SpawnedKamatis.transform.localScale = new Vector3(KamatisScale, KamatisScale, 1);
-        Rigidbody2D KamatisRB = SpawnedKamatis.GetComponent<Rigidbody2D>();
-        KamatisRB.AddForce(transform.up * 700);
-        KamatisRB.AddForce(transform.right * 700);
+            if (SpawnedAsukal.transform.position.x < 0) {
+                AsukalRB.AddTorque(-100);
+            }
+            else if (SpawnedAsukal.transform.position.x > 0) {
+                AsukalRB.AddTorque(100);
+            }
+        }
 
-        yield return new WaitForSeconds(1); // 2 seconds
+        // Pepper - TOP
+        else if (spawnInt == 1) {
+            PamintaScale = Random.Range(0.75f, 1);
+            SpawnedPaminta = Instantiate(Paminta, new Vector3(Random.Range(-6.66f, 6.66f), 6.332f, 0), Quaternion.Euler(0, 0, Random.Range(0, 180)));
+            SpawnedPaminta.transform.localScale = new Vector3(PamintaScale, PamintaScale, 1);
+            Rigidbody2D PamintaRB = SpawnedPaminta.GetComponent<Rigidbody2D>();
 
-        // Beans - spawns from the top
-        SitawScale = Random.Range(0.55f, 0.75f);
-        SpawnedSitaw = Instantiate(Sitaw, new Vector3(Random.Range(9.34f, 10.13f), (Random.Range(8.67f, 3.78f)), 0), Quaternion.Euler(0, 0, Random.Range(0, 180)));
-        SpawnedSitaw.transform.localScale = new Vector3(SitawScale, SitawScale, 1);
-        Rigidbody2D SitawRB = SpawnedSitaw.GetComponent<Rigidbody2D>();
-        SitawRB.AddForce(transform.right * -500);
+            if (SpawnedPaminta.transform.position.x < 0) {
+                PamintaRB.AddTorque(-40);
+            }
+            else if (SpawnedPaminta.transform.position.x > 0) {
+                PamintaRB.AddTorque(40);
+            }            
+        }
 
-        yield return new WaitForSeconds(1); // 3 seconds
+        // Pepper - BOTTOM
+        if (spawnInt == 2) {
+            PamintaScale = Random.Range(0.75f, 1);
+            SpawnedPaminta = Instantiate(Paminta, new Vector3(Random.Range(-6.66f, 6.66f), -6.332f, 0), Quaternion.Euler(0, 0, Random.Range(0, 180)));
+            SpawnedPaminta.transform.localScale = new Vector3(PamintaScale, PamintaScale, 1);
+            Rigidbody2D PamintaRB = SpawnedPaminta.GetComponent<Rigidbody2D>();
 
-        // Coconut - spawns from the top
-        NiyogScale = Random.Range(0.65f, 1f);
-        SpawnedNiyog = Instantiate(Niyog, new Vector3(Random.Range(-7.15f, 7.15f), (Random.Range(8.7f, 6.31f)), 0), Quaternion.Euler(0, 0, Random.Range(0, 180)));
-        SpawnedNiyog.transform.localScale = new Vector3(NiyogScale, NiyogScale, 1);
+            PamintaRB.gravityScale = -0.55f;
+            PamintaRB.AddForce(transform.up * 300);
 
-        yield return new WaitForSeconds(1); // 4 seconds
+            if (SpawnedPaminta.transform.position.x < 0) {
+                PamintaRB.AddTorque(-40);
+            }
+            else if (SpawnedPaminta.transform.position.x > 0) {
+                PamintaRB.AddTorque(-40);
+            }
+        }
 
-        // Cabbage - thrown up from the bottom
-        PichayScale = Random.Range(0.7f, 1f);
-        SpawnedPichay = Instantiate(Pichay, new Vector3(Random.Range(-7.46f, 0f), (Random.Range(-8.99f, -5.91f)), 0), Quaternion.Euler(0, 0, Random.Range(0, 180)));
-        SpawnedPichay.transform.localScale = new Vector3(PichayScale, PichayScale, 1);
-        Rigidbody2D PichayRB = SpawnedPichay.GetComponent<Rigidbody2D>();
-        PichayRB.AddForce(transform.up * 2300);
+        //  Bean - LEFT TO RIGHT
+        else if (spawnInt == 3) {
+            SitawScale = Random.Range(0.5f, 0.75f);
+            SpawnedSitawLEFT = Instantiate(Sitaw, new Vector3(-9.545f, Random.Range(-3.542f, 3.542f), 0), Quaternion.Euler(0, 0, Random.Range(0, 180)));
+            SpawnedSitawLEFT.transform.localScale = new Vector3(SitawScale, SitawScale, 1);
+            Rigidbody2D SitawRB = SpawnedSitawLEFT.GetComponent<Rigidbody2D>();
 
-        yield return new WaitForSeconds(1); // 5 seconds
+            SitawRB.AddTorque(25);
 
-        // Tomatoes - spawn from the sides, thrown inward
-        KamatisScale2 = Random.Range(1.0f, 1.75f);
-        SpawnedKamatis2 = Instantiate(Kamatis, new Vector3(Random.Range(9f, 10.45f), (Random.Range(0f, 4.75f)), 0), Quaternion.Euler(0, 0, Random.Range(0, 180)));
-        SpawnedKamatis2.transform.localScale = new Vector3(KamatisScale2, KamatisScale2, 1);
-        Rigidbody2D KamatisRB2 = SpawnedKamatis2.GetComponent<Rigidbody2D>();
-        KamatisRB2.AddForce(transform.right * -700);
+            SpawnedSitawLEFT.AddComponent<LeftToRight>();
+        }
 
-        yield return new WaitForSeconds(1); // 6 seconds total
+        // Bean - RIGHT TO LEFT
+        else if (spawnInt == 4) {
+            SitawScale = Random.Range(0.5f, 0.75f);
+            SpawnedSitawRIGHT = Instantiate(Sitaw, new Vector3(9.545f, Random.Range(-3.542f, 3.542f), 0), Quaternion.Euler(0, 0, Random.Range(0, 180)));
+            SpawnedSitawRIGHT.transform.localScale = new Vector3(SitawScale, SitawScale, 1);
+            Rigidbody2D SitawRB = SpawnedSitawRIGHT.GetComponent<Rigidbody2D>();
+
+            SitawRB.AddTorque(-25);
+
+            SpawnedSitawRIGHT.AddComponent<RightToLeft>();
+        }
+
+        // Carrot - TOP
+        else if (spawnInt == 5) {
+            KarotScale = Random.Range(0.75f, 1);
+            SpawnedKarot = Instantiate(Karot, new Vector3(Random.Range(-6.242f, 6.424f), 6.724f, 0), Quaternion.Euler(0, 0, Random.Range(0, 180)));
+            SpawnedKarot.transform.localScale = new Vector3(KarotScale, KarotScale, 1);
+            Rigidbody2D KarotRB = SpawnedKarot.GetComponent<Rigidbody2D>();
+            KarotRB.AddTorque(15);
+        }
+
+        // Tomato - BOTTOM
+        else if (spawnInt == 6) {
+            KamatisScale = Random.Range(0.75f, 1);
+            SpawnedKamatis = Instantiate(Kamatis, new Vector3(Random.Range(-7, 7), -5.91f, 0), Quaternion.Euler(0, 0, Random.Range(0, 180)));
+            SpawnedKamatis.transform.localScale = new Vector3(KamatisScale, KamatisScale, 1);
+            Rigidbody2D KamatisRB = SpawnedKamatis.GetComponent<Rigidbody2D>();
+
+            KamatisRB.AddForce(transform.up * 200);
+
+            if (SpawnedKamatis.transform.position.x < 0) {
+                KamatisRB.AddTorque(-75);
+            }
+            else if (SpawnedKamatis.transform.position.x > 0) {
+                KamatisRB.AddTorque(-75);
+            }
+        }
+
+        // Pineapple - LEFT TO RIGHT
+        else if (spawnInt == 7) {
+            PinaScale = Random.Range(0.55f, 1f);
+            SpawnedPinaLEFT = Instantiate(Pina, new Vector3(-9.242f, Random.Range(-3.677f, 3.677f), 0), Quaternion.Euler(0, 0, Random.Range(0, 180)));
+            SpawnedPinaLEFT.transform.localScale = new Vector3(PinaScale, PinaScale, 1);
+            Rigidbody2D PinaRB = SpawnedPinaLEFT.GetComponent<Rigidbody2D>();
+
+            PinaRB.AddTorque(25);
+
+            SpawnedPinaLEFT.AddComponent<LeftToRight>();
+        }
+
+        // Pineapple - RIGHT TO LEFT
+        else if (spawnInt == 8) {
+            PinaScale = Random.Range(0.55f, 1f);
+            SpawnedPinaRIGHT = Instantiate(Pina, new Vector3(9.242f, Random.Range(-3.677f, 3.677f), 0), Quaternion.Euler(0, 0, Random.Range(0, 180)));
+            SpawnedPinaRIGHT.transform.localScale = new Vector3(PinaScale, PinaScale, 1);
+            Rigidbody2D PinaRB = SpawnedPinaRIGHT.GetComponent<Rigidbody2D>();
+
+            PinaRB.AddTorque(25);
+
+            SpawnedPinaRIGHT.AddComponent<RightToLeft>();
+        }
     }
 
     public void DeleteFood() {
@@ -146,4 +255,17 @@ public class SplashScreen : MonoBehaviour {
         }
     }
 
+    public void Play() {
+        bgm.volume = 0.1f;
+        CancelInvoke("FoodSpawn");
+        DeleteFood();
+    }
+
+    public void EnterButton() {
+        Cursor.visible = true;
+    }
+
+    public void ExitButton() {
+        Cursor.visible = false;
+    }
 }

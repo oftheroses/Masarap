@@ -1,8 +1,9 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using System.Collections.Generic;
+﻿using TMPro;
 using System;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Audio;
+using System.Collections.Generic;
 
 public class Settings : MonoBehaviour {
 
@@ -15,6 +16,8 @@ public class Settings : MonoBehaviour {
     public TextMeshProUGUI TooltipTextDelica;
     public TextMeshProUGUI TooltipTextDyslexic;
     public Slider TooltipTransSlider;
+
+    public AudioMixer mixer;
 
     public TextMeshProUGUI musicTextDelica;
     public TextMeshProUGUI musicTextDyslexic;
@@ -44,8 +47,8 @@ public class Settings : MonoBehaviour {
         }
 
         TooltipTrans();
-        Music();
-        SFX();
+        MusicVar();
+        SFXVar();
 
         if (player.openDyslexic == true) {
             foreach (GameObject open in dyslexicSpread) {
@@ -86,16 +89,24 @@ public class Settings : MonoBehaviour {
         TooltipTextDyslexic.text = "Tooltip transparency: " + TooltipTransSlider.value.ToString();
     }
 
-    public void Music() {
-        player.musicVolume = musicSlider.value;
-        musicTextDelica.text = "BG music: " + musicSlider.value.ToString() + "%";
-        musicTextDyslexic.text = "BG music: " + musicSlider.value.ToString() + "%";
+    public void Music(float bgmVal) {
+        mixer.SetFloat("BGM", Mathf.Log10(bgmVal) * 20); // change the audio mixer with slider
     }
 
-    public void SFX() {
-        player.SFXVolume = SFXSlider.value;
-        SFXTextDelica.text = "SFX: " + SFXSlider.value.ToString() + "%";
-        SFXTextDyslexic.text = "SFX: " + SFXSlider.value.ToString() + "%";
+    public void MusicVar() {
+        player.musicVolume = musicSlider.value; // change player with slider
+        musicTextDelica.text = "BG music: " + musicSlider.value.ToString("p0"); // change text with slider
+        musicTextDyslexic.text = "BG music: " + musicSlider.value.ToString("p0"); // change text with slider.
+    }
+
+    public void SFX(float sfxVal) {
+        mixer.SetFloat("SFX", Mathf.Log10(sfxVal) * 20);
+    }
+
+    public void SFXVar() {
+        player.SFXVolume = SFXSlider.value; // change player with slider
+        SFXTextDelica.text = "SFX: " + SFXSlider.value.ToString("p0");
+        SFXTextDyslexic.text = "SFX: " + SFXSlider.value.ToString("p0");
     }
 
     public void OpenDyslexic() {

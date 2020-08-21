@@ -14,6 +14,10 @@ public class SpreadManager : MonoBehaviour {
      * 6: 12-13
      */
 
+
+    public GameObject tutorial1;
+    public GameObject tutorial2;
+
     public Player player;
     public AudioManager pageTurn;
     public int currentSpread;
@@ -31,7 +35,17 @@ public class SpreadManager : MonoBehaviour {
     #endregion
 
     void Awake() {
-        currentSpread = player.currentSpread;
+        if (player.level == 0) {
+            tutorial1.SetActive(true);
+            tutorial2.SetActive(true);
+            player.currentSpread = 4;
+        }
+        else if (player.level >= 1) {
+            tutorial1.SetActive(false);
+            tutorial2.SetActive(false);
+            currentSpread = player.currentSpread;
+        }
+
         changeSpread();
     }
 

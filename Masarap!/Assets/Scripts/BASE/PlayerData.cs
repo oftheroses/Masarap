@@ -20,6 +20,7 @@ public class PlayerData {
     public int langThree;
 
     public PlayerData(Player player) {
+
         currentSpread = player.currentSpread;
         level = player.level;
         lives = player.lives;

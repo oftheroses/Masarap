@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using TMPro;
 
@@ -17,6 +16,8 @@ public class Countdown : MonoBehaviour {
     public Material dyslexic;
 
     public GameObject recipe;
+
+    public GameObject prog;
 
     void Start() {
         am = FindObjectOfType<AudioManager>();

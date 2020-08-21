@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 944505036760938640}
   - component: {fileID: 3821180367099771631}
   - component: {fileID: 3645041433206440037}
-  - component: {fileID: 12758722432072661}
   - component: {fileID: 1305481976349929534}
+  - component: {fileID: 1850612223391179644}
   m_Layer: 9
   m_Name: Kamatis
   m_TagString: food
@@ -73,13 +73,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 6760894341577057533, guid: b2721fde624d79242a066526d6abfd77,
+  m_Sprite: {fileID: 8544819283297617881, guid: 431e78cb79bc29442b6ded0be8fd5439,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.93, y: 0.86}
+  m_Size: {x: 1.78, y: 1.68}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -94,10 +94,11 @@ AudioSource:
   m_GameObject: {fileID: 2058609628727918428}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ba2b1faaebd665a4d9a133b109a1f4a4, type: 3}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: fdcb460d89168aa4f8539bc74a2f8af9,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 3b3341d46a2f254429e0d573c18f1802, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.25
+  m_Volume: 0.1
   m_Pitch: 0.75
   Loop: 0
   Mute: 0
@@ -181,22 +182,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!58 &12758722432072661
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2058609628727918428}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.050466537}
-  serializedVersion: 2
-  m_Radius: 0.41453347
 --- !u!50 &1305481976349929534
 Rigidbody2D:
   serializedVersion: 4
@@ -208,13 +193,51 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 1
-  m_Mass: 0.539845
+  m_UseAutoMass: 0
+  m_Mass: 1
   m_LinearDrag: 2
-  m_AngularDrag: 2
-  m_GravityScale: 1
+  m_AngularDrag: 0
+  m_GravityScale: -0.55
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!68 &1850612223391179644
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058609628727918428}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.1260545, y: 0.76017255}
+  - {x: -0.18210325, y: 0.73974776}
+  - {x: -0.22698529, y: 0.6234625}
+  - {x: -0.12654552, y: 0.3823023}
+  - {x: -0.3677152, y: 0.45809215}
+  - {x: -0.53648233, y: 0.39754954}
+  - {x: -0.7130296, y: 0.23507825}
+  - {x: -0.80599487, y: -0.0053530633}
+  - {x: -0.7550033, y: -0.2911108}
+  - {x: -0.5637715, y: -0.63075864}
+  - {x: -0.4380292, y: -0.71491134}
+  - {x: -0.26805627, y: -0.75314665}
+  - {x: 0.031843647, y: -0.7247354}
+  - {x: 0.43253863, y: -0.710028}
+  - {x: 0.6860945, y: -0.47501704}
+  - {x: 0.80262005, y: -0.1615119}
+  - {x: 0.70950615, y: 0.1694816}
+  - {x: 0.60039777, y: 0.3225014}
+  - {x: 0.30315104, y: 0.41076177}
+  - {x: 0.06163609, y: 0.36520475}
+  - {x: 0.03064093, y: 0.59563184}
+  - {x: -0.11508694, y: 0.7596786}
