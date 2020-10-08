@@ -85,8 +85,8 @@ public class Settings : MonoBehaviour {
         player.tooltipBGTransparency = tooltipTransparency;
         
 
-        TooltipTextDelica.text = "Tooltip transparency: " + TooltipTransSlider.value.ToString();
-        TooltipTextDyslexic.text = "Tooltip transparency: " + TooltipTransSlider.value.ToString();
+        TooltipTextDelica.text = "Tooltip transparency: " + (TooltipTransSlider.value / 255).ToString("0%");
+        TooltipTextDyslexic.text = "Tooltip transparency: " + (TooltipTransSlider.value / 100).ToString("0%");
     }
 
     public void Music(float bgmVal) {
@@ -95,8 +95,8 @@ public class Settings : MonoBehaviour {
 
     public void MusicVar() {
         player.musicVolume = musicSlider.value; // change player with slider
-        musicTextDelica.text = "BG music: " + musicSlider.value.ToString("p0"); // change text with slider
-        musicTextDyslexic.text = "BG music: " + musicSlider.value.ToString("p0"); // change text with slider.
+        musicTextDelica.text = "BG music: " + musicSlider.value.ToString("0%"); // change text with slider
+        musicTextDyslexic.text = "BG music: " + musicSlider.value.ToString("0%"); // change text with slider.
     }
 
     public void SFX(float sfxVal) {
@@ -105,8 +105,8 @@ public class Settings : MonoBehaviour {
 
     public void SFXVar() {
         player.SFXVolume = SFXSlider.value; // change player with slider
-        SFXTextDelica.text = "SFX: " + SFXSlider.value.ToString("p0");
-        SFXTextDyslexic.text = "SFX: " + SFXSlider.value.ToString("p0");
+        SFXTextDelica.text = "SFX: " + SFXSlider.value.ToString("0%");
+        SFXTextDyslexic.text = "SFX: " + SFXSlider.value.ToString("0%");
     }
 
     public void OpenDyslexic() {

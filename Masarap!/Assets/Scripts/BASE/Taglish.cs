@@ -30,8 +30,8 @@ public class Taglish : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
      * i commit some serious sins in this script, beware
      */
 
-    public Player player;
-    public AudioManager AM;
+    private Player player;
+    private AudioManager AM;
     public TextMeshProUGUI baseText;
 
     public int languageInt;
@@ -70,6 +70,11 @@ public class Taglish : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     private byte tooltipAlpha;
     private VerticalLayoutGroup tooltipVLG; // terrible. pure shit coding going on here.
     #endregion
+
+    public void Awake() {
+        AM = FindObjectOfType<AudioManager>();
+        player = FindObjectOfType<Player>();
+    }
 
     // on awake, set text to TL / EN / CB
     public void Start() {

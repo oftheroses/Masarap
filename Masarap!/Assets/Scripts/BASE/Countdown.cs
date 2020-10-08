@@ -19,7 +19,11 @@ public class Countdown : MonoBehaviour {
 
     public GameObject prog;
 
-    void Start() {
+    public float s1;
+    public float s2;
+    public float s3;
+
+    void Awake() {
         am = FindObjectOfType<AudioManager>();
         player = FindObjectOfType<Player>();
 
@@ -36,18 +40,18 @@ public class Countdown : MonoBehaviour {
     }
     
     IEnumerator Tick() {
-        am.Play("Hit 1");
+        //am.Play("Hit 1");
         text.text = "3";
-        yield return new WaitForSeconds(1);
-        am.Play("Hit 1");
+        yield return new WaitForSeconds(s1);
+        //am.Play("Hit 1");
         text.text = "2";
-        yield return new WaitForSeconds(1);
-        am.Play("Hit 1");
+        yield return new WaitForSeconds(s2);
+        //am.Play("Hit 1");
         text.text = "1";
-        yield return new WaitForSeconds(1);
-        am.Play("Hit 2");
+        yield return new WaitForSeconds(s3);
+        //am.Play("Hit 2");
 
         gameObject.SetActive(false);
-        recipe.SetActive(true);
+        //recipe.SetActive(true);
     }
 }
