@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 
 public class TooltipResizer : MonoBehaviour {
+
     /* works w/ taglish script,
      * for guides / help tip boxes
      * resizes them & changes color
@@ -16,40 +17,42 @@ public class TooltipResizer : MonoBehaviour {
     public bool isEnglish = false;
     public bool isCebuano = false;
     public VerticalLayoutGroup VLG;
-    public bool Updated = true;
 
-    void Update() {
-         if (taglishScript.languageInt == 0 && Updated == true) {
+    public void Tagalog() {
+        if (taglishScript.languageInt == 0) {
             isTagalog = true;
             isEnglish = false;
             isCebuano = false;
 
             background.color = new Color32(218, 241, 251, 255); // tagalog color
-            VLG.padding.left = (VLG.padding.left) -1;
-            VLG.padding.right = (VLG.padding.right) -1;
-            Updated = false;
-         }
+            VLG.padding.left = 25;
+            VLG.padding.right = 25;
+        }
+    }
+
+    public void English() {
             
-         else if (taglishScript.languageInt == 1 && Updated == false) {
+          if (taglishScript.languageInt == 1) {
             isTagalog = false;
             isEnglish = true;
             isCebuano = false;
 
             background.color = new Color32(251, 244, 218, 255); // english
-            VLG.padding.left = (VLG.padding.right) +1;
-            VLG.padding.right = (VLG.padding.left) +1;
-            Updated = true;
+            VLG.padding.left = 24;
+            VLG.padding.right = 24;
          }
+    }
 
-         else if (taglishScript.languageInt == 2 && Updated == true) {
+
+    public void Cebuano() {
+        if (taglishScript.languageInt == 2) {
             isTagalog = false;
             isEnglish = false;
             isCebuano = true;
 
             background.color = new Color32(217, 222, 252, 255); // cebuano
-            VLG.padding.left = (VLG.padding.right) -1;
-            VLG.padding.right = (VLG.padding.left) -1;
-            Updated = false;
-         }
+            VLG.padding.left = 25;
+            VLG.padding.right = 25;
+        }
     }
 }

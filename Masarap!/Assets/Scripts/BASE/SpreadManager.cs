@@ -14,7 +14,6 @@ public class SpreadManager : MonoBehaviour {
      * 6: 12-13
      */
 
-
     public GameObject tutorial1;
     public GameObject tutorial2;
 

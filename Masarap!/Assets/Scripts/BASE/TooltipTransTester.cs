@@ -1,18 +1,20 @@
 ﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
-using UnityEngine.EventSystems;
-using System.Collections.Generic;
 
 public class TooltipTransTester : MonoBehaviour {
 
+    /* sample/test tooltip for settings page
+     */
+
+    #region basic
     public GameObject tooltip;
     private GameObject spawnedTT;
     private TextMeshProUGUI spawnedTText;
     public TMP_FontAsset denne;
     public Material denneRed;
     private Image tooltipImg;
+    #endregion
 
     public Player player;
 

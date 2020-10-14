@@ -51,6 +51,7 @@ public class Settings : MonoBehaviour {
         SFXVar();
 
         if (player.openDyslexic == true) {
+            openDyslexic = true;
             foreach (GameObject open in dyslexicSpread) {
                 open.SetActive(true);
             }
@@ -59,6 +60,7 @@ public class Settings : MonoBehaviour {
             }
         }
         else if (player.openDyslexic == false) {
+            openDyslexic = false;
             foreach (GameObject open in dyslexicSpread) {
                 open.SetActive(false);
             }

@@ -29,7 +29,15 @@ public class Player : MonoBehaviour {
 
         DontDestroyOnLoad(gameObject);
     }
-    
+
+    public void DyslexicToggle() {
+        if (openDyslexic == true) {
+            openDyslexic = false;
+        }
+        else if (openDyslexic == false) {
+            openDyslexic = true;
+        }
+    }
 
     public void SavePlayer() {
         SaveSystem.SavePlayer(this);

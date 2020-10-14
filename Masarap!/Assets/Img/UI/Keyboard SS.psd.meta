@@ -32,6 +32,30 @@ TextureImporter:
   - first:
       213: -6566532151514605417
     second: Keyboard SS_9
+  - first:
+      213: 7441844205522530457
+    second: Keyboard SS_4
+  - first:
+      213: -2638723446932998497
+    second: Keyboard SS_5
+  - first:
+      213: 5052748381012494868
+    second: Keyboard SS_6
+  - first:
+      213: 5194654486476881863
+    second: Keyboard SS_7
+  - first:
+      213: 9188508304723623277
+    second: Keyboard SS_0
+  - first:
+      213: -255889701528322325
+    second: Keyboard SS_1
+  - first:
+      213: -2831047960990515639
+    second: Keyboard SS_2
+  - first:
+      213: -7672807694290722633
+    second: Keyboard SS_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -141,90 +165,6 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Keyboard SS_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 202
-        width: 100
-        height: 100
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 340f174e87a042960800000000000000
-      internalID: 7576191987489042499
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Keyboard SS_1
-      rect:
-        serializedVersion: 2
-        x: 101
-        y: 202
-        width: 100
-        height: 100
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4699dcdf145d7f860800000000000000
-      internalID: 7563748578599737700
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Keyboard SS_2
-      rect:
-        serializedVersion: 2
-        x: 202
-        y: 202
-        width: 100
-        height: 100
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7329465e284dd9720800000000000000
-      internalID: 2854671397482172983
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Keyboard SS_3
-      rect:
-        serializedVersion: 2
-        x: 303
-        y: 202
-        width: 100
-        height: 100
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7b7a044a618757040800000000000000
-      internalID: 4644750629342848951
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Keyboard SS_4
       rect:
         serializedVersion: 2
@@ -239,8 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1b226397d80b98da0800000000000000
-      internalID: -5942024111668190543
+      spriteID: 99038f750edb64760800000000000000
+      internalID: 7441844205522530457
       vertices: []
       indices: 
       edges: []
@@ -260,8 +200,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06536444c86a63810800000000000000
-      internalID: 1744765027023730016
+      spriteID: f96701d610f516bd0800000000000000
+      internalID: -2638723446932998497
       vertices: []
       indices: 
       edges: []
@@ -281,8 +221,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f94e2c416667f1a0800000000000000
-      internalID: -6775834546279659018
+      spriteID: 41a0ea5c1e7fe1640800000000000000
+      internalID: 5052748381012494868
       vertices: []
       indices: 
       edges: []
@@ -291,9 +231,9 @@ TextureImporter:
       name: Keyboard SS_7
       rect:
         serializedVersion: 2
-        x: 303
-        y: 101
-        width: 100
+        x: 2
+        y: 0
+        width: 300
         height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -302,18 +242,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 11e91111179313a10800000000000000
-      internalID: 1887352876625403409
+      spriteID: 7cff755abbe171840800000000000000
+      internalID: 5194654486476881863
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Keyboard SS_8
+      name: Keyboard SS_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 202
         width: 100
         height: 100
       alignment: 0
@@ -323,18 +263,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2536ab6d619ba2d90800000000000000
-      internalID: -7121676352990059694
+      spriteID: d6d37cece93248f70800000000000000
+      internalID: 9188508304723623277
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Keyboard SS_9
+      name: Keyboard SS_1
       rect:
         serializedVersion: 2
         x: 101
-        y: 0
+        y: 202
         width: 100
         height: 100
       alignment: 0
@@ -344,8 +284,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7985ac69ccdfed4a0800000000000000
-      internalID: -6566532151514605417
+      spriteID: bee39b61ca5e27cf0800000000000000
+      internalID: -255889701528322325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Keyboard SS_2
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 202
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94ef01701e816b8d0800000000000000
+      internalID: -2831047960990515639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Keyboard SS_3
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 202
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b0eae7ed06b48590800000000000000
+      internalID: -7672807694290722633
       vertices: []
       indices: 
       edges: []
