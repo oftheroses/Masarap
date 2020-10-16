@@ -130,7 +130,6 @@ public class Settings : MonoBehaviour {
     }
 
     public void DenneDelica() {
-        // font is OpenDyslexic. Set it to DenneDelica
         if (player.openDyslexic == true) {
             player.openDyslexic = false;
 

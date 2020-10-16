@@ -153,7 +153,7 @@ TextureImporter:
         x: 48
         y: 0
         width: 81
-        height: 170
+        height: 127
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,6 +163,27 @@ TextureImporter:
       bones: []
       spriteID: 3ca62e61f7cd21ba0800000000000000
       internalID: -6119586505240188221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MOUSE_2
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 52
+        width: 30
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1125c6ff9ac76ca0800000000000000
+      internalID: -6023623188196024036
       vertices: []
       indices: 
       edges: []

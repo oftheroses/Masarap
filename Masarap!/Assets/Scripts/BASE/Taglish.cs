@@ -94,7 +94,7 @@ public class Taglish : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
             else if (fontInt == 1) {
                 baseText.fontSharedMaterial = delicaTag;
             }
-            else if (fontInt == 3) {
+            else if (fontInt == 2) {
                 baseText.fontSharedMaterial = dyslexicTag;
             }
         }
@@ -109,7 +109,7 @@ public class Taglish : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
             else if (fontInt == 1) {
                 baseText.fontSharedMaterial = delicaEng;
             }
-            else if (fontInt == 3) {
+            else if (fontInt == 2) {
                 baseText.fontSharedMaterial = dyslexicEng;
             }
         }
@@ -124,7 +124,7 @@ public class Taglish : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
             else if (fontInt == 1) {
                 baseText.fontSharedMaterial = delicaCeb;
             }
-            else if (fontInt == 3) {
+            else if (fontInt == 2) {
                 baseText.fontSharedMaterial = dyslexicCeb;
             }
         }
