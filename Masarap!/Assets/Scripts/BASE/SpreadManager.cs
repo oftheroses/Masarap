@@ -149,28 +149,31 @@ public class SpreadManager : MonoBehaviour {
     }
 
     public void spreadIncrease() {
-        // ONLY if it's less than 12 - never lets int go past 12
-        if (currentSpread < 9) {
-            currentSpread++;
+        if (disableAll == false && disableRight == false) {
+            // ONLY if it's less than 12 - never lets int go past 12
+            if (currentSpread < 9) {
+                currentSpread++;
 
-            changeSpread();
-            pageTurn.Play("Page Turn");
-        }
-        else if (currentSpread == 9) {
-            pageTurn.Play("Hit 2");
+                changeSpread();
+                pageTurn.Play("Page Turn");
+            }
+            else if (currentSpread == 9) {
+                pageTurn.Play("Hit 2");
+            }
         }
     }
 
-    // ONLY if it's more than 0 - never lets int go below 0
     public void spreadDecrease() {
-        if (currentSpread > 0) {
-            currentSpread--;
+        if (disableLeft == false && disableAll == false) {
+            if (currentSpread > 0) {
+                currentSpread--;
 
-            changeSpread();
-            pageTurn.Play("Page Turn");
-        }
-        else if (currentSpread == 0) {
-            pageTurn.Play("Hit 2");
+                changeSpread();
+                pageTurn.Play("Page Turn");
+            }
+            else if (currentSpread == 0) {
+                pageTurn.Play("Hit 2");
+            }
         }
     }
 }

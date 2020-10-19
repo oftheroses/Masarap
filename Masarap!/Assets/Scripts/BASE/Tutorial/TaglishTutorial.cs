@@ -26,6 +26,7 @@ public class TaglishTutorial : MonoBehaviour, IPointerClickHandler {
     public AudioManager AM;
     public Player player;
     public SpreadManager sm;
+    public AudioSource rhythm;
 
     public Animation firstD;
     public Animation firstSpace;
@@ -133,51 +134,54 @@ public class TaglishTutorial : MonoBehaviour, IPointerClickHandler {
         denneBreakfast.disableLeftClick = true;
         dyslexicBreakfast.disableLeftClick = true;
         TextUpdater();
+        rhythm.volume = 0.5f;
     }
 
     public void Update() {
 
-        // upwards
-        if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.RightArrow)) {
+        if (languageInt == 0) {
+            // upwards
+            if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.RightArrow)) {
+                if (disableRightClick == false) {
+                    AM.Play("Click");
 
-            if (disableRightClick == false) {
-                AM.Play("Click");
+                    // won't go above 2
+                    if (languageInt < 2) {
+                        // if we're going upward FROM tagalog TO english
+                        if (languageInt == 0) {
+                            TagToEng();
+                        }
+                        // if we're going upward FROM english TO cebuano
+                        else if (languageInt == 1) {
+                            EngToCeb();
+                        }
 
-                // won't go above 2
-                if (languageInt < 2) {
-                    // if we're going upward FROM tagalog TO english
-                    if (languageInt == 0) {
-                        TagToEng();
+                        languageInt++;
+                        TextUpdater();
                     }
-                    // if we're going upward FROM english TO cebuano
-                    else if (languageInt == 1) {
-                        EngToCeb();
-                    }
-
-                    languageInt++;
-                    TextUpdater();
                 }
             }
-        }
 
-        // downwards
-        else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow)) {
-            if (disableLeftClick == false) {
-                AM.Play("Click");
+            // downwards
+            else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow)) {
+                if (disableLeftClick == false) {
+                    AM.Play("Click");
 
-                // if 0, 1, 2
-                if (languageInt > 0) {
-                    // if we're going downward TO tagalog FROM english
-                    if (languageInt == 1) {
-                        EngtoTag();
+                    // if 0, 1, 2
+                    if (languageInt > 0) {
+                        // if we're going downward TO tagalog FROM english
+                        if (languageInt == 1) {
+                            EngtoTag();
+                        }
+                        // if we're going downward TO english FROM cebuano
+                        else if (languageInt == 2) 
+{
+                            CebToEng();
+                        }
+
+                        languageInt--;
+                        TextUpdater();
                     }
-                    // if we're going downward TO english FROM cebuano
-                    else if (languageInt == 2) {
-                        CebToEng();
-                    }
-
-                    languageInt--;
-                    TextUpdater();
                 }
             }
         
