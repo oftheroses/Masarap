@@ -1,11 +1,22 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 using System.Collections;
 
 public class Champorado : MonoBehaviour {
 
     #region BASE
+    public Rigidbody2D BGrb;
+    public bool stuckTop = false;
+    public bool stuckBottom = false;
+    public bool stuckRight = false;
+    public bool stuckLeft = false;
+
+    public Player player;
     public AudioManager AM;
+
+    public GameObject paws;
+    public bool isPaws = false;
 
     private Vector3 mousePos;
     public Rigidbody2D rb;
@@ -13,10 +24,6 @@ public class Champorado : MonoBehaviour {
 
     public int FoodRandomiser;
 
-    public GameObject paws;
-    public bool isPaws = false;
-
-    public Player player;
 
     public AudioSource collectSound;
     public AudioSource crash;
@@ -34,16 +41,15 @@ public class Champorado : MonoBehaviour {
     public int CollectedTuyo;
     #endregion
 
-
     // InvokeRepeating "void FoodSpawn",
     void Awake() {
         //AM = FindObjectOfType<AudioManager>();
-        // player = FindObjectOfType<Player>();
+        //player = FindObjectOfType<Player>();
 
         lead.Play();
 
         if (player.level == 0) {
-            InvokeRepeating("Hey", 0, 16);
+
         }
 
         else if (player.level > 1) {
@@ -100,13 +106,29 @@ public class Champorado : MonoBehaviour {
         }
     }
 
-    void Hey() {
-        StartCoroutine(TutorialSpawner());
+    void Play() {
+        StartCoroutine("Spawning");
     }
 
-    // Regular "void" doesn't allow delays,
-    void FoodSpawn() {
+    IEnumerator Spawning() {
+        // song is 32.065
 
+        FoodSpawn();
+
+        yield return new WaitForSeconds(0.050f); //00.300 [2]
+
+        FoodSpawn();
+
+        yield return new WaitForSeconds(0.350f); //0.900 [4]
+
+        FoodSpawn();
+
+        yield return new WaitForSeconds(0.800f); //1.835 [6]
+
+        FoodSpawn();
+    }
+
+    void FoodSpawn() {
         // UP -> DOWN
         if (FoodRandomiser == 1) {
             SpawnedTuyo = Instantiate(Tuyo, new Vector3((Random.Range(-6.454f, 6.454f)), 6.5f, 0), Quaternion.Euler(0, 0, Random.Range(0, 360)));
@@ -160,79 +182,6 @@ public class Champorado : MonoBehaviour {
             TuyoRB.AddForce(transform.up * Random.Range(400, 500));
             TuyoRB.AddForce(transform.right * Random.Range(-400, -500));
         }
-    }
-
-    // but IEnumerator does.
-    IEnumerator Spawning() {
-        // song is 32.065
-
-        FoodSpawn();
-
-        yield return new WaitForSeconds(0.050f); //00.300 [2]
-
-        FoodSpawn();
-
-        yield return new WaitForSeconds(0.350f); //0.900 [4]
-
-        FoodSpawn();
-
-        yield return new WaitForSeconds(0.800f); //1.835 [6]
-
-        FoodSpawn();
-    }
-
-    IEnumerator TutorialSpawner() {
-        FoodRandomiser = Random.Range(1, 6);
-        FoodSpawn();
-
-        yield return new WaitForSeconds(0.5f);
-
-        FoodSpawn();
-
-        yield return new WaitForSeconds(0.5f);
-
-        FoodSpawn();
-
-        yield return new WaitForSeconds(1);
-
-        FoodSpawn();
-
-        yield return new WaitForSeconds(0.5f);
-
-        FoodRandomiser = Random.Range(1, 6);
-        FoodSpawn();
-
-        yield return new WaitForSeconds(0.5f);
-       
-        FoodSpawn();
-
-        yield return new WaitForSeconds(1);
-
-        FoodSpawn();
-
-        yield return new WaitForSeconds(0.5f);
-
-        FoodRandomiser = Random.Range(1, 6);
-        FoodSpawn();
-
-        yield return new WaitForSeconds(0.5f);
-
-        FoodRandomiser = Random.Range(1, 6);
-        FoodSpawn();
-
-        yield return new WaitForSeconds(1);
-
-        FoodSpawn();
-
-        yield return new WaitForSeconds(0.5f);
-
-        FoodRandomiser = Random.Range(1, 6);
-        FoodSpawn();
-
-        yield return new WaitForSeconds(0.25f);
-
-
-        FoodSpawn();
     }
 
     public void DeleteFood() {

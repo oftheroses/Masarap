@@ -25,14 +25,24 @@ public class TaglishTutorial : MonoBehaviour, IPointerClickHandler {
     #region BASIC
     public AudioManager AM;
     public Player player;
+    public SpreadManager sm;
+
+    public Animation firstD;
+    public Animation firstSpace;
+    public Animation firstRight;
+    public GameObject secondKeys;
     public TextMeshProUGUI baseText;
     public TextMeshProUGUI tooltipText;
     public RectTransform tooltipTextRECT;
     public RectTransform tooltipBG;
 
     public TextMeshProUGUI tooltipThreeText;
+    public TextMeshProUGUI patreonText;
     public RectTransform tooltipThreeBG;
+    public Image tooltipThreeIMG;
+
     public TextMeshProUGUI tooltipFourText;
+    public TextMeshProUGUI tooltipFiveText;
 
     public Image background;
     public VerticalLayoutGroup VLG;
@@ -48,6 +58,7 @@ public class TaglishTutorial : MonoBehaviour, IPointerClickHandler {
     public string english;
     public string cebuano;
 
+    public Material calibriRed;
     public Material calibriTag;
     public Material calibriEng;
     public Material calibriCeb;
@@ -58,6 +69,7 @@ public class TaglishTutorial : MonoBehaviour, IPointerClickHandler {
     public Material delicaEng;
     public Material delicaCeb;
 
+    public Material dyslexicRed;
     public Material dyslexicTag;
     public Material dyslexicEng;
     public Material dyslexicCeb;
@@ -68,21 +80,30 @@ public class TaglishTutorial : MonoBehaviour, IPointerClickHandler {
     private Color32 engColor;
     private Color32 cebColor;
 
-    public bool firstClick = false;
     public Animation firstAnim;
     public Animation secondAnim;
     public Animation thirdAnim;
     public Animation breakfastBlur;
+    public Animation blur2;
 
     public GameObject mouseOne;
+    public RectTransform mouseOneRect;
     public GameObject mouseTwo;
+
+    public Image mouseTwoLeft;
+    public Image mouseTwoRight;
+
+    public GameObject mouseThree;
 
     public Settings settingScript;
     public Toggle dyslexicToggle;
 
     public Taglish denneBreakfast;
+    public TextMeshProUGUI denneTMP;
     public GameObject denneBreakfastGlow;
+
     public Taglish dyslexicBreakfast;
+    public TextMeshProUGUI dyslexicTMP;
     public GameObject dyslexicBreakfastGlow;
 
     public TextMeshProUGUI tagalogCalibri;
@@ -90,16 +111,27 @@ public class TaglishTutorial : MonoBehaviour, IPointerClickHandler {
     public TextMeshProUGUI cebuanoCalibri;
 
     public Animation arrowAnim;
-
+    public GameObject arrow;
     public Animation mouseTwoAnim;
     public Animation miniTwoAnim;
+    public Image miniTwoLeft;
+    public Image miniTwoRight;
+
+    public Animation nextPage;
 
     public bool pingedTag = false;
     public bool pingedCeb = false;
+
+    public bool disableRightClick = false;
+    public bool disableLeftClick = false;
+
+    public GameObject Tutorial;
     #endregion
 
     // on awake, set text to TL / EN / CB
     public void Start() {
+        denneBreakfast.disableLeftClick = true;
+        dyslexicBreakfast.disableLeftClick = true;
         TextUpdater();
     }
 
@@ -107,51 +139,54 @@ public class TaglishTutorial : MonoBehaviour, IPointerClickHandler {
 
         // upwards
         if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.RightArrow)) {
-            AM.Play("Click");
 
-            // won't go above 2
-            if (languageInt < 2) {
+            if (disableRightClick == false) {
+                AM.Play("Click");
 
-                // if we're going upward FROM tagalog TO english
-                if (languageInt == 0) {
-                    TagToEng();
+                // won't go above 2
+                if (languageInt < 2) {
+                    // if we're going upward FROM tagalog TO english
+                    if (languageInt == 0) {
+                        TagToEng();
+                    }
+                    // if we're going upward FROM english TO cebuano
+                    else if (languageInt == 1) {
+                        EngToCeb();
+                    }
+
+                    languageInt++;
+                    TextUpdater();
                 }
-                // if we're going upward FROM english TO cebuano
-                else if (languageInt == 1) {
-                    EngToCeb();
-                }
-
-                languageInt++;
-                TextUpdater();
             }
         }
 
         // downwards
         else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow)) {
-            AM.Play("Click");
+            if (disableLeftClick == false) {
+                AM.Play("Click");
 
-            // if 0, 1, 2
-            if (languageInt > 0) {
-                // if we're going downward TO tagalog FROM english
-                if (languageInt == 1) {
-                    EngtoTag();
-                }
-                // if we're going downward TO english FROM cebuano
-                else if (languageInt == 2) {
-                    CebToEng();
-                }
+                // if 0, 1, 2
+                if (languageInt > 0) {
+                    // if we're going downward TO tagalog FROM english
+                    if (languageInt == 1) {
+                        EngtoTag();
+                    }
+                    // if we're going downward TO english FROM cebuano
+                    else if (languageInt == 2) {
+                        CebToEng();
+                    }
 
-                languageInt--;
-                TextUpdater();
+                    languageInt--;
+                    TextUpdater();
+                }
             }
         
         }
 
         // if we switch off english & the glow is still existing, destroy them
-        if ((denneBreakfast.languageInt != 1 || dyslexicBreakfast.languageInt != 1) && denneBreakfastGlow != null) {
+        if (denneBreakfast.languageInt != 1 && denneBreakfastGlow != null) {
             Destroy(denneBreakfastGlow);
             Destroy(dyslexicBreakfastGlow);
-            mouseTwo.SetActive(false);
         }
 
         // when it's on tagalog,
@@ -163,6 +198,7 @@ public class TaglishTutorial : MonoBehaviour, IPointerClickHandler {
 
             if (tagalogCalibri.fontStyle != FontStyles.Underline) {
                 tagalogCalibri.fontStyle = FontStyles.Underline;
+                tagalogCalibri.fontStyle = FontStyles.Bold;
 
                 if (dyslexicToggle.isOn) {
                     tagalogCalibri.fontSize = 35;
@@ -182,23 +218,24 @@ public class TaglishTutorial : MonoBehaviour, IPointerClickHandler {
             }
 
             // if animator is not already playing tag->eng
-            if (!arrowAnim.IsPlaying("TutArrowTagToEng")) {
+            if (arrowAnim.isActiveAndEnabled == true && !arrowAnim.IsPlaying("TutArrowTagToEng")) {
                 // stop whatever is playing
                 arrowAnim.Stop();
                 // the arrow blinks towards english
                 arrowAnim.Play("TutArrowTagToEng");
             }
 
-            // if animator is not already playing left
-            if (!mouseTwoAnim.IsPlaying("TutMouseLeft")) {
-                // stop whatever is playing
+            // if animator is not already playing right
+            if (mouseTwoAnim.isActiveAndEnabled == true && !mouseTwoAnim.IsPlaying("TutMouseRight")) {
+
                 mouseTwoAnim.Stop();
-
+                mouseTwoLeft.color = new Color32(253, 58, 76, 0);
+                mouseTwoRight.color = new Color32(253, 58, 76, 0);
+                mouseTwoAnim.Play("TutMouseRight");
                 miniTwoAnim.Stop();
-
-                mouseTwoAnim.Play("TutMouseLeft");
-
-                miniTwoAnim.Play("TutMouseLeft");
+                miniTwoLeft.color = new Color32(253, 58, 76, 0);
+                miniTwoRight.color = new Color32(253, 58, 76, 0);
+                miniTwoAnim.Play("TutMouseRight");
             }
         }
 
@@ -207,6 +244,7 @@ public class TaglishTutorial : MonoBehaviour, IPointerClickHandler {
             if (englishCalibri.fontStyle != FontStyles.Underline) {
                 tagalogCalibri.fontStyle = FontStyles.Normal;
                 englishCalibri.fontStyle = FontStyles.Underline;
+                englishCalibri.fontStyle = FontStyles.Bold;
                 cebuanoCalibri.fontStyle = FontStyles.Normal;
 
                 if (dyslexicToggle.isOn) {
@@ -222,24 +260,74 @@ public class TaglishTutorial : MonoBehaviour, IPointerClickHandler {
                     cebuanoCalibri.fontSize = 30;
                 }
             }
-            // if animator is not already playing the looped arrow
-            if (!arrowAnim.IsPlaying("TutArrowLoop")) {
-                // stop whatever is playing
-                arrowAnim.Stop();
-                // the arrow blinks -> to cebuano & <- to tagalog
-                arrowAnim.Play("TutArrowLoop");
+
+            // if haven't gone to tag or ceb, default to eng -> ceb
+            if (pingedTag == false && pingedCeb == false) {
+                if (!arrowAnim.IsPlaying("TutArrowEngToCeb")) {
+                    // stop whatever is playing
+                    arrowAnim.Stop();
+                    // the arrow blinks -> to cebuano & <- to tagalog
+                    arrowAnim.Play("TutArrowEngToCeb");
+                }
+
+                // if animator is not already playing rightclick
+                if (mouseTwo.activeInHierarchy == true && !mouseTwoAnim.IsPlaying("TutMouseRight")) {
+                    // stop whatever is playing
+                    mouseTwoAnim.Stop();
+                    mouseTwoLeft.color = new Color32(253, 58, 76, 0);
+                    mouseTwoRight.color = new Color32(253, 58, 76, 0);
+
+                    miniTwoAnim.Stop();
+                    miniTwoLeft.color = new Color32(253, 58, 76, 0);
+                    miniTwoRight.color = new Color32(253, 58, 76, 0);
+
+                    mouseTwoAnim.Play("TutMouseRight");
+
+                    miniTwoAnim.Play("TutMouseRight");
+                }
+            }
+            // has trans. to ceb, not tag yet. show only left arrow+mouse
+            else if (pingedTag == false && pingedCeb == true) {
+                disableLeftClick = true;
+                if (!arrowAnim.IsPlaying("TutArrowEngToTag")) {
+                    arrowAnim.Stop();
+
+                    arrowAnim.Play("TutArrowEngToTag");
+                }
+
+                if (mouseTwo.activeInHierarchy == true && !mouseTwoAnim.IsPlaying("TutMouseLeft")) {
+                    mouseTwoAnim.Stop();
+                    mouseTwoLeft.color = new Color32(253, 58, 76, 0);
+                    mouseTwoRight.color = new Color32(253, 58, 76, 0);
+                    mouseTwoAnim.Play("TutMouseLeft");
+
+                    miniTwoAnim.Stop();
+                    miniTwoLeft.color = new Color32(253, 58, 76, 0);
+                    miniTwoRight.color = new Color32(253, 58, 76, 0);
+                    miniTwoAnim.Play("TutMouseLeft");
+                }
             }
 
-            // if animator is not already playing loop
-            if (!mouseTwoAnim.IsPlaying("TutMouseLoop")) {
-                // stop whatever is playing
-                mouseTwoAnim.Stop();
+            // has trans. to ceb, coming back from eng
+            else if (pingedTag == true && pingedCeb == true && denneBreakfast.disableAll == false) {
+                denneBreakfast.disableAll = true;
+                dyslexicBreakfast.disableAll = true;
+                mouseTwo.SetActive(false);
+                arrow.SetActive(false);
+                denneBreakfast.disableAll = true;
+                dyslexicBreakfast.disableAll = true;
+                sm.disableRight = false;
+                denneTMP.color = new Color32(255, 255, 255, 128);
+                dyslexicTMP.color = new Color32(255, 255, 255, 128);
 
-                miniTwoAnim.Stop();
+                mouseThree.SetActive(true);
+                background.color = new Color32(251, 244, 218, 255);
 
-                mouseTwoAnim.Play("TutMouseLoop");
-
-                miniTwoAnim.Play("TutMouseLoop");
+                tooltipThreeIMG.color = new Color32(255, 240, 235, 128);
+                tagalogCalibri.color = new Color32(255, 255, 255, 128);
+                englishCalibri.color = new Color32(255, 255, 255, 128);
+                cebuanoCalibri.color = new Color32(255, 255, 255, 128);
+                patreonText.color = new Color32(255, 255, 255, 128);
             }
         }
 
@@ -248,16 +336,21 @@ public class TaglishTutorial : MonoBehaviour, IPointerClickHandler {
 
             if (pingedCeb == false) {
                 pingedCeb = true;
+                denneBreakfast.disableLeftClick = false;
+                dyslexicBreakfast.disableLeftClick = false;
+                disableRightClick = false;
+                disableLeftClick = false;
             }
 
             if (cebuanoCalibri.fontStyle != FontStyles.Underline) {
                 tagalogCalibri.fontStyle = FontStyles.Normal;
                 englishCalibri.fontStyle = FontStyles.Normal;
                 cebuanoCalibri.fontStyle = FontStyles.Underline;
-
+                cebuanoCalibri.fontStyle = FontStyles.Bold;
                 if (dyslexicToggle.isOn) {
                     cebuanoCalibri.fontSize = 35;
 
+                    tagalogCalibri.fontSize = 30;
                     tagalogCalibri.fontSize = 30;
                     englishCalibri.fontSize = 30;
                 }
@@ -268,24 +361,29 @@ public class TaglishTutorial : MonoBehaviour, IPointerClickHandler {
                     englishCalibri.fontSize = 30;
                 }
             }
-            // if animator is not already playing eng<-ceb
-            if (!arrowAnim.IsPlaying("TutArrowCebToEng")) {
-                // stop whatever is playing
-                arrowAnim.Stop();
+            // if animator is not already playing ceb to eng
+            if (arrowAnim.isActiveAndEnabled == true && !arrowAnim.IsPlaying("TutArrowCebToEng")) {
                 // the arrow points <- TO ENGLISH
+                arrowAnim.Stop();
                 arrowAnim.Play("TutArrowCebToEng");
             }
 
-            // if animator is not already playing right
-            if (!mouseTwoAnim.IsPlaying("TutMouseRight")) {
-                // stop whatever is playing
+            // if animator is not already playing left mouse
+            if (mouseTwoAnim.isActiveAndEnabled == true && !mouseTwoAnim.IsPlaying("TutMouseLeft")) {
+
+
                 mouseTwoAnim.Stop();
-
+                mouseTwoLeft.color = new Color32(253, 58, 76, 0);
+                mouseTwoRight.color = new Color32(253, 58, 76, 0);
+                mouseTwoAnim.Play("TutMouseLeft");
                 miniTwoAnim.Stop();
+                miniTwoLeft.color = new Color32(253, 58, 76, 0);
+                miniTwoRight.color = new Color32(253, 58, 76, 0);
+                miniTwoAnim.Play("TutMouseLeft");
+            }
 
-                mouseTwoAnim.Play("TutMouseRight");
-
-                miniTwoAnim.Play("TutMouseRight");
+            if (pingedTag == true && pingedCeb == true && mouseThree.activeInHierarchy == true) {
+                mouseThree.SetActive(false);
             }
         }
     }
@@ -309,7 +407,16 @@ public class TaglishTutorial : MonoBehaviour, IPointerClickHandler {
 
         // base text: english
         else if (languageInt == 1) {
-            background.color = new Color32(251, 244, 218, 255); // english
+
+            if (pingedCeb == false) {
+                background.color = new Color32(251, 244, 218, 128); // english, half alpha
+                baseText.color = new Color32(255, 255, 255, 170);
+            }
+            if (pingedCeb == true && pingedTag == true) {
+                background.color = new Color32(251, 244, 218, 255); // english, full alpha
+                baseText.color = new Color32(255, 255, 255, 255);
+            }
+
             VLG.padding.left = 24;
             VLG.padding.right = 24;
             baseText.text = english;
@@ -381,6 +488,13 @@ public class TaglishTutorial : MonoBehaviour, IPointerClickHandler {
 
             cebuanoCalibri.font = openDyslexic;
             cebuanoCalibri.fontSharedMaterial = dyslexicCeb;
+
+            // let's make...
+            tooltipFiveText.font = openDyslexic;
+            tooltipFiveText.fontSize = 30;
+            tooltipFiveText.fontSharedMaterial = dyslexicRed;
+
+            mouseOneRect.transform.localPosition = new Vector3(417.7f, -60.6f, 0);
         }
 
         else if (!dyslexicToggle.isOn) {
@@ -425,6 +539,13 @@ public class TaglishTutorial : MonoBehaviour, IPointerClickHandler {
 
             cebuanoCalibri.font = calibri;
             cebuanoCalibri.fontSharedMaterial = calibriCeb;
+
+            // let's make...
+            tooltipFiveText.font = calibri;
+            tooltipFiveText.fontSize = 40;
+            tooltipFiveText.fontSharedMaterial = calibriRed;
+
+            mouseOneRect.transform.localPosition = new Vector3(344.1f, -60.6f, 0);
         }
 
         TextUpdater();
@@ -434,25 +555,48 @@ public class TaglishTutorial : MonoBehaviour, IPointerClickHandler {
         mouseOne.SetActive(false);
         firstAnim.Play("Tooltip 2 - Together Animation");
         secondAnim.Play("Tooltip 3 - Words Animation");
-        breakfastBlur.Play("Tutorial Blur Animation");
-  
+        if (breakfastBlur.enabled == false) {
+            breakfastBlur.enabled = true;
+        }
+        mouseTwoAnim.enabled = true;
 
-        denneBreakfastGlow.SetActive(true);
-        dyslexicBreakfastGlow.SetActive(true);
+        if (denneBreakfastGlow != null) {
+            denneBreakfastGlow.SetActive(true);
+            dyslexicBreakfastGlow.SetActive(true);
+        }
+
+        if (pingedCeb == false) {
+            disableLeftClick = true;
+            disableRightClick = true;
+        }
+
+        if (firstD.enabled == true) {
+            firstD.enabled = false;
+            firstSpace.enabled = false;
+            firstRight.enabled = false;
+        }
     }
     public void EngtoTag() {
         mouseOne.SetActive(true);
         firstAnim.Play("Tooltip 2 - Together Animation REV");
         secondAnim.Play("Tooltip 3 - Words Animation REV");
-        breakfastBlur.Play("Tutorial Blur Animation REV");
-        denneBreakfastGlow.SetActive(false);
-        dyslexicBreakfastGlow.SetActive(false);
+
+        blur2.enabled = true;
+
+        if (denneBreakfastGlow != null) {
+            denneBreakfastGlow.SetActive(false);
+            dyslexicBreakfastGlow.SetActive(false);
+        }
     }
     public void EngToCeb() {
-        // if breakfastDenne.languageInt reached 0 & 2
         if (pingedTag == true && pingedCeb == true) {
+            secondKeys.SetActive(true);
             secondAnim.Play("Tooltip 3 - Words Animation 2");
             thirdAnim.Play("Tooltip 5 - Let's Animation");
+            mouseThree.SetActive(false);
+            disableRightClick = true;
+            blur2.enabled = true;
+            nextPage.enabled = true;
         }
     }
     public void CebToEng() {
@@ -461,49 +605,67 @@ public class TaglishTutorial : MonoBehaviour, IPointerClickHandler {
         }
     }
 
+    public void End() {
+        denneBreakfast.disableAll = false;
+        denneBreakfast.disableLeftClick = false;
+        denneBreakfast.disableRightClick = false;
 
-    // pointer click is in a separate function, because if
-    // we called it in update, it would listen to clicks
-    // screen-wide instead of in the box itself
+        dyslexicBreakfast.disableAll = false;
+        dyslexicBreakfast.disableLeftClick = false;
+        dyslexicBreakfast.disableRightClick = false;
+
+        denneTMP.color = new Color32(255, 255, 255, 255);
+        dyslexicTMP.color = new Color32(255, 255, 255, 255);
+        
+        if (Tutorial != null) {
+            Destroy(Tutorial);
+        }
+    }
+
+
     public void OnPointerClick(PointerEventData eventData) {
-        AM.Play("Click");
+        if (disableRightClick == false) {
+            // RIGHT CLICK - transl. upward
+            if (eventData.button == PointerEventData.InputButton.Right) {
+                AM.Play("Click");
+                // won't go above 2
+                if (languageInt < 2) {
 
-        // LEFT CLICK - transl. upward
-        if (eventData.button == PointerEventData.InputButton.Left) {
+                    // if we're going upward FROM tagalog TO english
+                    if (languageInt == 0) {
+                        TagToEng();
+                    }
+                    // if we're going upward FROM english TO cebuano
+                    else if (languageInt == 1) {
+                        EngToCeb();
+                    }
 
-            // won't go above 2
-            if (languageInt < 2) {
-
-                // if we're going upward FROM tagalog TO english
-                if (languageInt == 0) {
-                    TagToEng();
+                    languageInt++;
+                    TextUpdater();
                 }
-                // if we're going upward FROM english TO cebuano
-                else if (languageInt == 1) {
-                    EngToCeb();
-                }
-
-                languageInt++;
-                TextUpdater();
             }
         }
 
-        // RIGHT CLICK - transl. downward
-        if (eventData.button == PointerEventData.InputButton.Right) {
+        if (disableLeftClick == false) {
+            // LEFT CLICK - transl. downward
+            if (eventData.button == PointerEventData.InputButton.Left) {
+                AM.Play("Click");
+                if (pingedCeb == true) {
+                    // if 0, 1, 2
+                    if (languageInt > 0) {
+                        // if we're going downward TO tagalog FROM english
+                        if (languageInt == 1) {
+                            EngtoTag();
+                        }
+                        // if we're going downward TO english FROM cebuano
+                        else if (languageInt == 2) {
+                            CebToEng();
+                        }
 
-            // if 0, 1, 2
-            if (languageInt > 0) {
-                // if we're going downward TO tagalog FROM english
-                if (languageInt == 1) {
-                    EngtoTag();
+                        languageInt--;
+                        TextUpdater();
+                    }
                 }
-                // if we're going downward TO english FROM cebuano
-                else if (languageInt == 2) {
-                    CebToEng();
-                }
-
-                languageInt--;
-                TextUpdater();
             }
         }
     }

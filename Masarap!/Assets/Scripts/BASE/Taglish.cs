@@ -1,7 +1,8 @@
-﻿using UnityEngine.EventSystems;
+﻿using System.Collections.Generic;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 
 public class Taglish : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler {
 
@@ -12,9 +13,9 @@ public class Taglish : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
      *       
      * (2) - POINTER EXIT: destroy "spawnedTT"
      * 
-     * (3) - LEFTCLICK: translates TL -> EN -> CB
+     * (3) - RIGHTCLICK: translates TL -> EN -> CB
      * 
-     * (4) - RIGHTCLICK: translates TL <- EN <- CB
+     * (4) - LEFTCLICK: translates TL <- EN <- CB
      *  
      * language int:
      * -1 none
@@ -29,6 +30,8 @@ public class Taglish : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
      * 
      * i commit some serious sins in this script, beware
      */
+
+    public List<Taglish> counterparts;
 
     private Player player;
     private AudioManager AM;
@@ -69,6 +72,10 @@ public class Taglish : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     private Color32 cebColor;
     private byte tooltipAlpha;
     private VerticalLayoutGroup tooltipVLG; // terrible. pure shit coding going on here.
+
+    public bool disableRightClick = false;
+    public bool disableLeftClick = false;
+    public bool disableAll = false;
     #endregion
 
     public void Awake() {
@@ -234,7 +241,6 @@ public class Taglish : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
             tooltipVLG = null;
         }
     }
-
     
     public void OnPointerExit(PointerEventData eventData) {
 
@@ -247,31 +253,65 @@ public class Taglish : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     }
 
     public void OnPointerClick(PointerEventData eventData) {
-        
-        AM.Play("Click");
-        
-        // RIGHT CLICK - transl. downward
-        if (eventData.button == PointerEventData.InputButton.Right) {
-            // ONLY IF 0, 1, 2
-            if (languageInt > 0) {
-                languageInt--;
-                TextUpdater();
+        if (disableAll == false) {
+            // LEFT CLICK - transl. downward
+            if (eventData.button == PointerEventData.InputButton.Left) {
+                if (disableLeftClick == false) {
+                    AM.Play("Click");
+                    // ONLY IF 0, 1, 2
+                    if (languageInt > 0) {
+                        languageInt--;
 
-                if (tooltipEnabled == true) {
-                    TTUpdater();
+                        for (int i = 0; i < counterparts.Count; i++) {
+                            counterparts[i].languageInt--;
+                        }
+
+                        TextUpdater();
+
+                        if (tooltipEnabled == true) {
+                            TTUpdater();
+                        }
+
+                        if (languageInt == 0) {
+                            disableLeftClick = true;
+                        }
+                    }
                 }
             }
-        }
 
-        // LEFT CLICK - transl. upward
-        if (eventData.button == PointerEventData.InputButton.Left) {
-            // WON'T GO below 0 or above 2
-            if (languageInt < 2) {
-                languageInt++;
-                TextUpdater();
+            if (languageInt == 1) {
+                if (disableLeftClick == true) {
+                    disableLeftClick = false;
+                }
 
-                if (tooltipEnabled == true) {
-                    TTUpdater();
+                if (disableRightClick == true) {
+                    disableRightClick = false;
+                }
+            }
+
+            // RIGHT CLICK - transl. upward
+            if (eventData.button == PointerEventData.InputButton.Right) {
+
+                if (disableRightClick == false) {
+                    AM.Play("Click");
+                    // WON'T GO below 0 or above 2
+                    if (languageInt < 2) {
+                        languageInt++;
+
+                        for (int i = 0; i < counterparts.Count; i++) {
+                            counterparts[i].languageInt++;
+                        }
+
+                        TextUpdater();
+
+                        if (tooltipEnabled == true) {
+                            TTUpdater();
+                        }
+
+                        if (languageInt == 2) {
+                            disableRightClick = true;
+                        }
+                    }
                 }
             }
         }

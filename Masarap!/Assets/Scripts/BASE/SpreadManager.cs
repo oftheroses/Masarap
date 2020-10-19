@@ -21,6 +21,10 @@ public class SpreadManager : MonoBehaviour {
     public AudioManager pageTurn;
     public int currentSpread;
 
+    public bool disableAll = false;
+    public bool disableRight = false;
+    public bool disableLeft = false;
+
     public GameObject spreadZero;
     public GameObject spreadOne;
     public GameObject spreadTwo;
@@ -38,10 +42,14 @@ public class SpreadManager : MonoBehaviour {
             tutorial1.SetActive(true);
             tutorial2.SetActive(true);
             player.currentSpread = 4;
+            disableLeft = true;
+            disableRight = true;
         }
         else if (player.level >= 1) {
-            tutorial1.SetActive(false);
-            tutorial2.SetActive(false);
+            if (tutorial1.activeInHierarchy == true || tutorial2.activeInHierarchy == true) {
+                tutorial1.SetActive(false);
+                tutorial2.SetActive(false);
+            }
             currentSpread = player.currentSpread;
         }
 
@@ -115,26 +123,27 @@ public class SpreadManager : MonoBehaviour {
 
 
     void Update() {
-        if (player.level > 1) {
+        if (disableAll == false) {
             // goes to settings
-            if (Input.GetKeyDown("escape"))
-            {
+            if (Input.GetKeyUp("escape")) {
                 currentSpread = 0;
                 changeSpread();
             }
 
-            // W, D, ^, >, PgUp - navigate to next page
-            if (Input.GetKeyDown("w") || Input.GetKeyDown("d") || Input.GetKeyDown("up") || Input.GetKeyDown("right") || Input.GetKeyDown("page up"))
-            {
-                spreadIncrease();
-                changeSpread();
+            if (disableRight == false) {
+                // W, D, ^, >, PgUp - navigate to next page
+                if (Input.GetKeyUp("w") || Input.GetKeyUp("d") || Input.GetKeyUp("up") || Input.GetKeyUp("right") || Input.GetKeyUp("page up")) {
+                    spreadIncrease();
+                    changeSpread();
+                }
             }
 
-            // A, S, v, <, PgDn - navigate to previous page
-            if (Input.GetKeyDown("a") || Input.GetKeyDown("s") || Input.GetKeyDown("down") || Input.GetKeyDown("left") || Input.GetKeyDown("page down"))
-            {
-                spreadDecrease();
-                changeSpread();
+            if (disableLeft == false) {
+                // A, S, v, <, PgDn - navigate to previous page
+                if (Input.GetKeyUp("a") || Input.GetKeyUp("s") || Input.GetKeyUp("down") || Input.GetKeyUp("left") || Input.GetKeyUp("page down")) {
+                    spreadDecrease();
+                    changeSpread();
+                }
             }
         }
     }

@@ -1052,7 +1052,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &115653281
 GameObject:
@@ -3640,7 +3640,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &679210420
 GameObject:
@@ -3998,6 +3998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd00c57f0ca04e14994b8a1fb8688a23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  counterparts: []
   baseText: {fileID: 707580388}
   languageInt: 0
   fontInt: 0
@@ -4019,6 +4020,9 @@ MonoBehaviour:
   dyslexicEng: {fileID: 2100000, guid: 6425494bdb0bb0b4fb3b3fc22e7088ac, type: 2}
   dyslexicCeb: {fileID: 2100000, guid: 51f79f55b2cb5e244b9258f8462e4e59, type: 2}
   tooltip: {fileID: 7172919733664170274, guid: 719033b0f29289b4fbcb307cd03d8be4, type: 3}
+  disableRightClick: 0
+  disableLeftClick: 0
+  disableAll: 0
 --- !u!1 &708260202
 GameObject:
   m_ObjectHideFlags: 0
@@ -10738,12 +10742,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 58696ad2e4384124aa83b6ca078e9d9a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 51536a489b9282a47ad957d5b03de5aa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 9.6, y: 6}
+  m_DrawMode: 2
+  m_Size: {x: 16.039389, y: 10.008202}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -10757,8 +10761,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1986998479}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.002126694, y: 0.001309872, z: 0}
-  m_LocalScale: {x: 1.6671034, y: 1.6671034, z: 1.6671034}
+  m_LocalPosition: {x: 0.0178, y: -0.0019, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
