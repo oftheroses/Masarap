@@ -8,7 +8,6 @@ public class Player : MonoBehaviour {
     public int level;
     public int lives;
     public int mouseSpeed;
-    public bool tooltipEnabled;
     public byte tooltipBGTransparency;
     public float musicVolume;
     public float SFXVolume;
@@ -50,7 +49,6 @@ public class Player : MonoBehaviour {
         level = data.level;
         lives = data.lives;
         mouseSpeed = data.mouseSpeed;
-        tooltipEnabled = data.tooltipEnabled;
         tooltipBGTransparency = data.tooltipBGTransparency;
         SFXVolume = data.SFXVolume;
         musicVolume = data.musicVolume;

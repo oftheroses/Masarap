@@ -620,10 +620,7 @@ public class TaglishTutorial : MonoBehaviour, IPointerClickHandler {
 
         denneTMP.color = new Color32(255, 255, 255, 255);
         dyslexicTMP.color = new Color32(255, 255, 255, 255);
-        
-        if (Tutorial != null) {
-            Destroy(Tutorial);
-        }
+        gameObject.SetActive(false);
     }
 
 

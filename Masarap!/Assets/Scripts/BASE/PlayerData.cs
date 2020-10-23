@@ -9,7 +9,6 @@ public class PlayerData {
     public int level;
     public int lives;
     public int mouseSpeed;
-    public bool tooltipEnabled;
     public byte tooltipBGTransparency;
     public float SFXVolume;
     public float musicVolume;
@@ -25,7 +24,6 @@ public class PlayerData {
         level = player.level;
         lives = player.lives;
         mouseSpeed = player.mouseSpeed;
-        tooltipEnabled = player.tooltipEnabled;
         tooltipBGTransparency = player.tooltipBGTransparency;
         SFXVolume = player.SFXVolume;
         musicVolume = player.musicVolume;

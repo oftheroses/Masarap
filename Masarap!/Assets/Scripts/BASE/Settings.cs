@@ -9,8 +9,6 @@ public class Settings : MonoBehaviour {
 
     public Player player;
 
-    public Toggle enableTooltip;
-
     public byte tooltipTransparency;
 
     public TextMeshProUGUI TooltipTextDelica;
@@ -39,12 +37,6 @@ public class Settings : MonoBehaviour {
 
     void Awake() {
         player = FindObjectOfType<Player>();
-        if (player.tooltipEnabled == true) {
-            enableTooltip.isOn = true;
-        }
-        else if (player.tooltipEnabled == false) {
-            enableTooltip.isOn = false;
-        }
 
         TooltipTrans();
         MusicVar();
@@ -67,15 +59,6 @@ public class Settings : MonoBehaviour {
             foreach (GameObject denne in delicaSpread) {
                 denne.SetActive(true);
             }
-        }
-    }
-
-    public void Tooltips() {
-        if (enableTooltip.isOn) {
-            player.tooltipEnabled = true;
-        }
-        else if (!enableTooltip.isOn) {
-            player.tooltipEnabled = false;
         }
     }
 
