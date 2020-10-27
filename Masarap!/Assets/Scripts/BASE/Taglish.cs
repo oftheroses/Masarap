@@ -23,9 +23,8 @@ public class Taglish : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
      * 2 cebuano
      * 
      * font int:
-     * 0 calibri
-     * 1 denne delica
-     * 2 opendyslexic
+     * 0 custom
+     * 1 dyslexic
      * 
      * i commit some serious sins in this script, beware
      */
@@ -53,7 +52,7 @@ public class Taglish : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     public string tooltipEng;
     [TextArea]
     public string tooltipCeb;
-
+    // tooltip fonts
     public TMP_FontAsset calibri;
     public TMP_FontAsset openDyslexic;
 
@@ -65,9 +64,9 @@ public class Taglish : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     public Material calibriEng;
     public Material calibriCeb;
 
-    public Material delicaTag;
-    public Material delicaEng;
-    public Material delicaCeb;
+    public Material fontTag;
+    public Material fontEng;
+    public Material fontCeb;
 
     public Material dyslexicTag;
     public Material dyslexicEng;
@@ -94,45 +93,63 @@ public class Taglish : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     }
 
     public void TextUpdater() {
-        // base text: tagalog & TT text: english
         if (languageInt == 0) {
+            disableLeftClick = true;
+            if (!string.IsNullOrEmpty(english) || !string.IsNullOrEmpty(cebuano) && disableRightClick == true) {
+                disableRightClick = false;
+            }
+            else if (string.IsNullOrEmpty(english) && string.IsNullOrEmpty(cebuano)) {
+                disableRightClick = true;
+            }
+
             baseText.text = tagalog;
 
             if (fontInt == 0) {
-                baseText.fontSharedMaterial = calibriTag;
+                baseText.fontSharedMaterial = fontTag;
             }
             else if (fontInt == 1) {
-                baseText.fontSharedMaterial = delicaTag;
-            }
-            else if (fontInt == 2) {
                 baseText.fontSharedMaterial = dyslexicTag;
             }
         }
 
-        // base text: english & TT text: cebuano
         else if (languageInt == 1) {
+            if (!string.IsNullOrEmpty(tagalog) && disableLeftClick == true) {
+                disableLeftClick = false;
+            }
+            else if (string.IsNullOrEmpty(tagalog)) {
+                disableLeftClick = true;
+            }
+
+            if (string.IsNullOrEmpty(cebuano)) {
+                disableRightClick = true;
+            }
+            else if (!string.IsNullOrEmpty(cebuano) && disableRightClick == true) {
+                disableRightClick = false;
+            }
+
             baseText.text = english;
 
             if (fontInt == 0) {
-                baseText.fontSharedMaterial = calibriEng;
+                baseText.fontSharedMaterial = fontEng;
             }
             else if (fontInt == 1) {
-                baseText.fontSharedMaterial = delicaEng;
-            }
-            else if (fontInt == 2) {
                 baseText.fontSharedMaterial = dyslexicEng;
             }
         }
 
-        // base text: cebuano & TT text: tagalog
         else if (languageInt == 2) {
+            disableRightClick = true;
+            if (!string.IsNullOrEmpty(tagalog) || !string.IsNullOrEmpty(english) && disableLeftClick == true) {
+                disableLeftClick = false;
+            }
+            else if (string.IsNullOrEmpty(tagalog) && string.IsNullOrEmpty(english)) {
+                disableLeftClick = true;
+            }
+
             baseText.text = cebuano;
 
             if (fontInt == 0) {
-                baseText.fontSharedMaterial = calibriCeb;
-            }
-            else if (fontInt == 1) {
-                baseText.fontSharedMaterial = delicaCeb;
+                baseText.fontSharedMaterial = fontCeb;
             }
             else if (fontInt == 2) {
                 baseText.fontSharedMaterial = dyslexicCeb;
@@ -325,43 +342,48 @@ public class Taglish : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
                 tooltipActive = false;
             }
 
-            // LEFT CLICK - transl. downward
             if (eventData.button == PointerEventData.InputButton.Left) {
                 if (disableLeftClick == false) {
                     AM.Play("Click");
-                    // ONLY IF 0, 1, 2
-                    if (languageInt > 0) {
+
+                    if (languageInt == 2 && string.IsNullOrEmpty(english)) {
+                        languageInt = 0;
+                        TextUpdater();
+                        for (int i = 0; i < counterparts.Count; i++) {
+                            counterparts[i].languageInt = 0;
+                            counterparts[i].TextUpdater();
+                        }
+                        TextUpdater();
+                        tooltipMaster();
+                    }
+                    else if (languageInt > 0) {
                         languageInt--;
+
                         for (int i = 0; i < counterparts.Count; i++) {
                             counterparts[i].languageInt--;
                             counterparts[i].TextUpdater();
                         }
                         TextUpdater();
                         tooltipMaster();
-                        if (languageInt == 0) {
-                            disableLeftClick = true;
-                        }
                     }
                 }
             }
 
-            if (languageInt == 1) {
-                if (disableLeftClick == true) {
-                    disableLeftClick = false;
-                }
-
-                if (disableRightClick == true) {
-                    disableRightClick = false;
-                }
-            }
-
-            // RIGHT CLICK - transl. upward
             if (eventData.button == PointerEventData.InputButton.Right) {
 
                 if (disableRightClick == false) {
                     AM.Play("Click");
-                    // WON'T GO below 0 or above 2
-                    if (languageInt < 2) {
+                    if (languageInt == 0 && string.IsNullOrEmpty(english)) {
+                        languageInt = 2;
+                        TextUpdater();
+                        for (int i = 0; i < counterparts.Count; i++) {
+                            counterparts[i].languageInt = 2;
+                            counterparts[i].TextUpdater();
+                        }
+                        TextUpdater();
+                        tooltipMaster();
+                    }
+                    else if (languageInt < 2) {
                         languageInt++;
                         for (int i = 0; i < counterparts.Count; i++) {
                             counterparts[i].languageInt++;
@@ -370,9 +392,6 @@ public class Taglish : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
 
                         TextUpdater();
                         tooltipMaster();
-                        if (languageInt == 2) {
-                            disableRightClick = true;
-                        }
                     }
                 }
             }

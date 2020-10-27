@@ -134,11 +134,11 @@ public class TaglishTutorial : MonoBehaviour, IPointerClickHandler {
         denneBreakfast.disableLeftClick = true;
         dyslexicBreakfast.disableLeftClick = true;
         TextUpdater();
-        rhythm.volume = 0.5f;
+        rhythm.volume = 0.65f;
     }
 
     public void Update() {
-
+        
         if (languageInt == 0) {
             // upwards
             if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.RightArrow)) {

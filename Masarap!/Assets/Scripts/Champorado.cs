@@ -29,6 +29,7 @@ public class Champorado : MonoBehaviour {
     public AudioSource crash;
 
     public AudioSource lead;
+    public AudioSource outro;
 
     public Image progress;
     public GameObject fin;
@@ -41,20 +42,14 @@ public class Champorado : MonoBehaviour {
     public int CollectedTuyo;
     #endregion
 
-    // InvokeRepeating "void FoodSpawn",
     void Awake() {
+        FoodRandomiser = Random.Range(1, 4);
         //AM = FindObjectOfType<AudioManager>();
         //player = FindObjectOfType<Player>();
 
         lead.Play();
 
-        if (player.level == 0) {
-
-        }
-
-        else if (player.level > 1) {
-            
-        }
+        StartCoroutine("Spawning");
     }
 
     void Update() {
@@ -71,7 +66,9 @@ public class Champorado : MonoBehaviour {
             Time.timeScale = 0;
         }
 
-        // maybe add interactive buttons to drum?
+        if (!lead.isPlaying && !outro.isPlaying) {
+            outro.Play();
+        }
     }
 
     public void Unpaws() {
@@ -111,34 +108,67 @@ public class Champorado : MonoBehaviour {
     }
 
     IEnumerator Spawning() {
-        // song is 32.065
+        // -50 from each thing, i guess
+        FoodSpawn();                              // 0:00:000 [1]
+        FoodRandomiser = Random.Range(1, 4);
+        yield return new WaitForSeconds(00.200f);
 
-        FoodSpawn();
+        FoodSpawn();                              // 0:00:250 [2]
+        FoodRandomiser = Random.Range(1, 4);
+        yield return new WaitForSeconds(00.200f);
 
-        yield return new WaitForSeconds(0.050f); //00.300 [2]
+        FoodSpawn();                              // 0:00:500 [3]
+        FoodRandomiser = Random.Range(1, 4);
+        yield return new WaitForSeconds(00.200f);
 
-        FoodSpawn();
+        FoodSpawn();                              // 0:00:750 [4]
+        FoodRandomiser = Random.Range(1, 4);
+        yield return new WaitForSeconds(00.250f);
 
-        yield return new WaitForSeconds(0.350f); //0.900 [4]
+        FoodSpawn();                              // 0:01:250 [5]
+        FoodRandomiser = Random.Range(1, 4);
+        yield return new WaitForSeconds(00.200f);
 
-        FoodSpawn();
+        FoodSpawn();                              // 0:01:500 [6]
+        FoodRandomiser = Random.Range(1, 4);
+        yield return new WaitForSeconds(00.200f);
 
-        yield return new WaitForSeconds(0.800f); //1.835 [6]
+        FoodSpawn();                              // 0:01:750 [7]
+        FoodRandomiser = Random.Range(1, 4);
+        yield return new WaitForSeconds(00.700f);
 
-        FoodSpawn();
+        FoodSpawn();                              // 0:02:500 [8]
+        FoodRandomiser = Random.Range(1, 4);
+        yield return new WaitForSeconds(00.200f);
+
+        FoodSpawn();                              // 0:02:750 [9]
+        FoodRandomiser = Random.Range(1, 4);
+        yield return new WaitForSeconds(00.450f);
+
+        FoodSpawn();                              // 0:03:250 [10]
+        FoodRandomiser = Random.Range(1, 4);
+        yield return new WaitForSeconds(00.200f);
+
+        FoodSpawn();                              // 0:03:500 [11]
+        FoodRandomiser = Random.Range(1, 4);
+        yield return new WaitForSeconds(00.200f);
+
+        FoodSpawn(); // 0:03:750 [12]
+        FoodRandomiser = Random.Range(1, 4);
+        yield return new WaitForSeconds(00.00f);
     }
 
     void FoodSpawn() {
-        // UP -> DOWN
+        // UP -> DOWN [0 rotation]
         if (FoodRandomiser == 1) {
-            SpawnedTuyo = Instantiate(Tuyo, new Vector3((Random.Range(-6.454f, 6.454f)), 6.5f, 0), Quaternion.Euler(0, 0, Random.Range(0, 360)));
+            SpawnedTuyo = Instantiate(Tuyo, new Vector3((Random.Range(-6.454f, 6.454f)), 6.028f, 0), Quaternion.Euler(0, 0, 0));
             //TuyoScale = Random.Range(0.5f, 1f);
             SpawnedTuyo.transform.localScale = new Vector3(0.5f, 0.5f, 1);
         }
 
-        // DOWN -> UP
+        // DOWN -> UP [180 rotation]
         else if (FoodRandomiser == 2) {
-            SpawnedTuyo = Instantiate(Tuyo, new Vector3(Random.Range(-6.454f, 6.454f), -6.5f, 0), Quaternion.Euler(0, 0, Random.Range(0, 360)));
+            SpawnedTuyo = Instantiate(Tuyo, new Vector3(Random.Range(-6.454f, 6.454f), -6.018f, 0), Quaternion.Euler(0, 0, 180));
             //TuyoScale = Random.Range(0.5f, 1f);
             SpawnedTuyo.transform.localScale = new Vector3(0.5f, 0.5f, 1);
             Rigidbody2D TuyoRB = SpawnedTuyo.GetComponent<Rigidbody2D>();
@@ -147,7 +177,7 @@ public class Champorado : MonoBehaviour {
 
         // UL -> CENTER
         else if (FoodRandomiser == 3) {
-            SpawnedTuyo = Instantiate(Tuyo, new Vector3(-8.748f, Random.Range(0.71f, 4.2f), 0), Quaternion.Euler(0, 0, Random.Range(0, 360)));
+            SpawnedTuyo = Instantiate(Tuyo, new Vector3(-8.339f, Random.Range(0.71f, 4.2f), 0), Quaternion.Euler(0, 0, 0));
             //TuyoScale = Random.Range(0.5f, 0.65f);
             SpawnedTuyo.transform.localScale = new Vector3(0.5f, 0.5f, 1);
             Rigidbody2D TuyoRB = SpawnedTuyo.GetComponent<Rigidbody2D>();
