@@ -1,18 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+using Malee.List;
 
 public class SpreadManager : MonoBehaviour {
     #region BASICS
-    /* spreads:
-     * 0: 0-1
-     * 1: 2-3
-     * 2: 4-5
-     * 3: 6-7
-     * 4: 8-9
-     * 5: 10-11
-     * 6: 12-13
-     */
 
     public GameObject tutorial1;
     public GameObject tutorial2;
@@ -25,16 +17,12 @@ public class SpreadManager : MonoBehaviour {
     public bool disableRight = false;
     public bool disableLeft = false;
 
-    public GameObject spreadZero;
-    public GameObject spreadOne;
-    public GameObject spreadTwo;
-    public GameObject spreadThree;
-    public GameObject spreadFour;
-    public GameObject spreadFive;
-    public GameObject spreadSix;
-    public GameObject spreadSeven;
-    public GameObject spreadEight;
-    public GameObject spreadNine;
+    // the background page & img assets. denne/dyslexic text is handled in settings
+    [Reorderable(paginate = true, pageSize = 20)]
+    public GameObjectList spreads;
+    [System.Serializable]
+    public class GameObjectList : ReorderableArray<GameObject> {
+    }
     #endregion
 
     void Awake() {
@@ -52,73 +40,18 @@ public class SpreadManager : MonoBehaviour {
             }
             currentSpread = player.currentSpread;
         }
-
         changeSpread();
     }
 
     public void changeSpread() {
         player.currentSpread = currentSpread;
 
-        //deactivate all spreads
-        GameObject[] gameObjectArray = GameObject.FindGameObjectsWithTag("spread");
-        foreach (GameObject spreads in gameObjectArray) {
-            spreads.SetActive(false);
+        // deactivate all pages
+        foreach (GameObject spread in spreads) {
+            spread.SetActive(false);
         }
 
-        // deactivate 0-1, activate 2-3
-        if (currentSpread == 0) {
-            spreadZero.SetActive(true);
-        }
-
-        // deactivate 2-3, activate 4-5
-        else if (currentSpread == 1) {
-            spreadOne.SetActive(true);
-        }
-
-        // deactivate 4-5, activate 6-7
-        else if (currentSpread == 2) {
-            spreadTwo.SetActive(true);
-        }
-
-        else if (currentSpread == 3) {
-            spreadThree.SetActive(true);
-        }
-        
-        else if (currentSpread == 4) {
-            spreadFour.SetActive(true);
-        }
-
-        else if (currentSpread == 5) {
-            spreadFive.SetActive(true);
-        }
-
-        else if (currentSpread == 6) {
-            spreadSix.SetActive(true);
-        }
-
-        else if (currentSpread == 7) {
-            spreadSeven.SetActive(true);
-        }
-
-        else if (currentSpread == 8) {
-            spreadEight.SetActive(true);
-        }
-
-        else if (currentSpread == 9) {
-            spreadNine.SetActive(true);
-        }
-
-        /*else if (currentSpread == 10) {
-            spreadTen.SetActive(true);
-        }
-
-        else if (currentSpread == 11) {
-            spreadEleven.SetActive(true);
-        }
-
-          else if (currentSpread == 12) {
-            spreadTwelve.SetActive(true);
-        }*/
+        spreads[currentSpread].SetActive(true);
     }
 
 
@@ -131,7 +64,8 @@ public class SpreadManager : MonoBehaviour {
             }
 
             if (disableRight == false) {
-                // W, D, ^, >, PgUp - navigate to next page
+                // KB: W, D, UpArrow, RightArrow, PgUp / PS4: DPad right, DPad up
+                // navigate to NEXT page
                 if (Input.GetKeyUp("w") || Input.GetKeyUp("d") || Input.GetKeyUp("up") || Input.GetKeyUp("right") || Input.GetKeyUp("page up")) {
                     spreadIncrease();
                     changeSpread();
@@ -139,7 +73,8 @@ public class SpreadManager : MonoBehaviour {
             }
 
             if (disableLeft == false) {
-                // A, S, v, <, PgDn - navigate to previous page
+                // KB: A, S, DownArrow, LeftArrow, PgDn / PS4: DPad left, DPad down
+                // navigate to PREVIOUS page
                 if (Input.GetKeyUp("a") || Input.GetKeyUp("s") || Input.GetKeyUp("down") || Input.GetKeyUp("left") || Input.GetKeyUp("page down")) {
                     spreadDecrease();
                     changeSpread();
@@ -150,14 +85,14 @@ public class SpreadManager : MonoBehaviour {
 
     public void spreadIncrease() {
         if (disableAll == false && disableRight == false) {
-            // ONLY if it's less than 12 - never lets int go past 12
-            if (currentSpread < 9) {
+
+            if (currentSpread < 4) {
                 currentSpread++;
 
                 changeSpread();
                 pageTurn.Play("Page Turn");
             }
-            else if (currentSpread == 9) {
+            else if (currentSpread == 4) {
                 pageTurn.Play("Hit 2");
             }
         }

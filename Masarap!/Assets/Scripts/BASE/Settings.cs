@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using System;
+using Malee.List;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 
 public class Settings : MonoBehaviour {
 
+    #region basic
     public Player player;
 
     public byte tooltipTransparency;
@@ -31,9 +33,16 @@ public class Settings : MonoBehaviour {
 
     public bool openDyslexic;
 
-    public List<GameObject> dyslexicSpread;
+    // page/img assets are handled in spreadmanager
+    [Reorderable(paginate = true, pageSize = 20)]
+    public GameObjectList dyslexicText;
+    [System.Serializable]
+    public class GameObjectList : ReorderableArray<GameObject> {
+    }
 
-    public List<GameObject> delicaSpread;
+    [Reorderable(paginate = true, pageSize = 20)]
+    public GameObjectList delicaText;
+    #endregion
 
     void Awake() {
         player = FindObjectOfType<Player>();
@@ -44,19 +53,19 @@ public class Settings : MonoBehaviour {
 
         if (player.openDyslexic == true) {
             openDyslexic = true;
-            foreach (GameObject open in dyslexicSpread) {
+            foreach (GameObject open in dyslexicText) {
                 open.SetActive(true);
             }
-            foreach (GameObject denne in delicaSpread) {
+            foreach (GameObject denne in delicaText) {
                 denne.SetActive(false);
             }
         }
         else if (player.openDyslexic == false) {
             openDyslexic = false;
-            foreach (GameObject open in dyslexicSpread) {
+            foreach (GameObject open in dyslexicText) {
                 open.SetActive(false);
             }
-            foreach (GameObject denne in delicaSpread) {
+            foreach (GameObject denne in delicaText) {
                 denne.SetActive(true);
             }
         }
@@ -95,14 +104,13 @@ public class Settings : MonoBehaviour {
     }
 
     public void OpenDyslexic() {
-        // font is DenneDelica. Set it to OpenDyslexic
         if (player.openDyslexic == false) {
             player.openDyslexic = true;
 
-            foreach (GameObject open in dyslexicSpread) {
+            foreach (GameObject open in dyslexicText) {
                 open.SetActive(true);
             }
-            foreach (GameObject denne in delicaSpread) {
+            foreach (GameObject denne in delicaText) {
                 denne.SetActive(false);
             }
             
@@ -116,10 +124,10 @@ public class Settings : MonoBehaviour {
         if (player.openDyslexic == true) {
             player.openDyslexic = false;
 
-            foreach (GameObject open in dyslexicSpread) {
+            foreach (GameObject open in dyslexicText) {
                 open.SetActive(false);
             }
-            foreach (GameObject denne in delicaSpread) {
+            foreach (GameObject denne in delicaText) {
                 denne.SetActive(true);
             }
 

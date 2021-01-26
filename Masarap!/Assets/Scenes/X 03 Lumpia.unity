@@ -380,6 +380,7 @@ GameObject:
   - component: {fileID: 1937761241}
   - component: {fileID: 1937761243}
   - component: {fileID: 1937761242}
+  - component: {fileID: 1937761244}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -404,7 +405,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 36.1, y: -33.8}
-  m_SizeDelta: {x: 272.12787, y: 117.61992}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1937761242
 MonoBehaviour:
@@ -425,7 +426,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: avoid wrong
+  m_text: "avoid wrong // \nmananatili ka ba sa hapunan?\n<i>will you stay for dinner?</i>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 547896f539d1f144db6a955671b11b29, type: 2}
   m_sharedMaterial: {fileID: 8145963559720824500, guid: 547896f539d1f144db6a955671b11b29,
@@ -495,12 +496,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1937761242}
-    characterCount: 11
+    characterCount: 70
     spriteCount: 0
-    spaceCount: 1
-    wordCount: 2
+    spaceCount: 13
+    wordCount: 12
     linkCount: 0
-    lineCount: 1
+    lineCount: 3
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -526,3 +527,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1937761240}
   m_CullTransparentMesh: 0
+--- !u!114 &1937761244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937761240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
